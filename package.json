@@ -1,0 +1,11 @@
+{
+  "name": "easyescape-queryclouds",
+  "version": "1.0.0",
+  "description": "WIL querycloud",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "abhishek",
+  "license": "ISC"
+}
