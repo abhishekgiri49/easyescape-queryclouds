@@ -1,0 +1,10 @@
+@media ((min-width: 1440px)) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    max-width: 90%;
+  }
+}

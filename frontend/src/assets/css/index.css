@@ -1,0 +1,191 @@
+.title {
+  font-family: "Lobster", cursive;
+  color: #3f51b5;
+}
+.center {
+  text-align: center;
+}
+.includeWrapper {
+  background: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+}
+.includeItemCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.includeItemCard .rightSec {
+  flex: 1;
+  text-align: center;
+  color: #757575;
+}
+.price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.price > .discount-info {
+  color: #4fc3f7;
+}
+.price > .original-price {
+  font-size: 2em;
+}
+.two-column-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+/* Optional: Style for list items */
+.two-column-list li:nth-child(odd) {
+  padding-right: 15px;
+}
+.two-column-list li {
+  width: 50%;
+  display: flex;
+  margin-bottom: 3px;
+  position: relative;
+  padding-left: 15px;
+}
+.single-line-list {
+  white-space: nowrap; /* Prevent line breaks */
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #d8d8d8;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+}
+.card-title span.selected {
+  border: 1px solid #16477f;
+  border-radius: 4px;
+  padding: 2px 4px;
+  color: #16477f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Optional: Style for list items */
+.single-line-list span {
+  margin-right: 1rem; /* Add space between items */
+}
+
+.right {
+  background-color: #3f51b5;
+  height: 580px;
+  width: 40%;
+  float: right;
+  margin-right: 50px;
+  margin-top: 80px;
+  position: relative;
+}
+
+.right > h1,
+h4 {
+  color: #fff;
+}
+
+.right > .book {
+  font-size: 90px;
+  font-weight: bold;
+  margin-top: -10px;
+  margin-bottom: -75px;
+  font-family: "Secular One", sans-serif;
+}
+.right > .travel {
+  margin-top: 20px;
+  font-size: 90px;
+  font-weight: bold;
+  font-family: "Secular One", sans-serif;
+}
+.right > h4 {
+  font-family: "Raleway", sans-serif;
+  font-size: 19px;
+  margin-top: -80px;
+}
+
+/* FORM */
+fieldset {
+  width: 84%;
+  margin: 30px auto;
+  margin-right: 30px;
+  background-color: #47d1d2;
+  padding: 2em;
+  border: none;
+}
+
+.reservation {
+  text-transform: uppercase;
+  font-family: "Hind", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #fff;
+}
+
+#cities {
+  width: 96%;
+  border: 1px solid #fff;
+  background-color: #47d2d2;
+  margin-bottom: 45px;
+  padding: 0.5em;
+  height: 2em;
+  font-family: "Raleway", sans-serif;
+  color: #fff;
+}
+
+#start,
+#adults-number {
+  border: 1px solid #fff;
+  background-color: #47d2d2;
+  margin-bottom: 25px;
+  padding: 0.5em;
+  height: 2em;
+  font-family: "Raleway", sans-serif;
+  color: #fff;
+  width: 90%;
+}
+
+.left2 {
+  margin-top: -18px;
+  margin-bottom: 18px;
+  float: left;
+  width: 46%;
+}
+
+#end,
+#children-number {
+  border: 1px solid #fff;
+  background-color: #47d2d2;
+  margin-bottom: 25px;
+  padding: 0.5em;
+  height: 2em;
+  font-family: "Raleway", sans-serif;
+  color: #fff;
+  width: 90%;
+}
+
+.right2 {
+  margin-top: -18px;
+  float: right;
+  width: 46%;
+}
+
+.btn {
+  background-color: #ffbd26;
+  font-family: "Hind", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  width: 100%;
+  border: none;
+  padding: 10px;
+  border-bottom: 4px solid #f8a426;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #fac778;
+}

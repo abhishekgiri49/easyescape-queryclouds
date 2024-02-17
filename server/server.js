@@ -1,17 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv").config();
 const cors = require("cors");
 const path = require("path");
 const bodyParser = require("body-parser");
 const app = express();
-const dbConfig = require("./config/database.config.js");
+const Config = require("./config/config.js");
 // Middleware
+
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
-const DB_URL = process.env.MONGO_URI || dbConfig.url;
+const DB_URL = Config.database_url;
+
 // MongoDB connection
 mongoose
   .connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -33,7 +34,7 @@ const categoryRoutes = require("./routes/categoryRoutes.js");
 app.use("/api/secured/categories", categoryRoutes);
 
 // Start server
-const PORT = process.env.PORT || 8080;
+const PORT = Config.port || 8080;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
