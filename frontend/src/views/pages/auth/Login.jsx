@@ -53,12 +53,11 @@ const Login = () => {
               <div className="card mb-0">
                 <div className="card-body">
                   <Link to="/" className="brand-logo">
-                    <h2 className="brand-text text-primary ms-1">Admin</h2>
+                    <h2 className="brand-text text-primary ms-1">
+                      <Logo />
+                    </h2>
                   </Link>
 
-                  <h4 className="card-title mb-1">
-                    Welcome to Admin Panel! 👋
-                  </h4>
                   <p className="card-text mb-2">
                     Please sign-in to your account and start the adventure
                   </p>
@@ -92,7 +91,12 @@ const Login = () => {
                   >
                     Sign in
                   </button>
-
+                  <p className="text-center mt-2">
+                    <Link to="/forgot-password" className="member-btn">
+                      Forgot password?
+                    </Link>
+                  </p>
+                  <br></br>
                   <p className="text-center mt-2">
                     <span>New on our platform?&nbsp;</span>
                     <Link to="/register" className="member-btn">

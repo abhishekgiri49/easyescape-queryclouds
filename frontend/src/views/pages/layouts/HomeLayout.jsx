@@ -1,20 +1,30 @@
 import { Outlet } from "react-router-dom";
-import { UserNavbar } from "../../components";
+import { UserNavbar, Footer } from "../../components";
 import styled from "styled-components";
 import NavWrapper from "../../../assets/wrappers/Navbar";
 const HomeLayout = () => {
   return (
-    <Wrapper>
-      <div className="app-content content ecommerce-application">
-        <NavWrapper>
-          <div className="main-navbar shadow-sm sticky-top">
-            <UserNavbar />
+    <>
+      <Wrapper>
+        <div className="app-content content ecommerce-application">
+          <NavWrapper>
+            <div className="main-navbar shadow-sm sticky-top">
+              <UserNavbar />
 
-            <Outlet />
-          </div>
-        </NavWrapper>
-      </div>
-    </Wrapper>
+              <Outlet />
+            </div>
+          </NavWrapper>
+        </div>
+      </Wrapper>
+      <footer class="footer footer-static footer-light">
+        <p class="clearfix mb-0">
+          <span class="float-md-start d-block d-md-inline-block mt-25">
+            COPYRIGHT &copy; 2021 EASYESCAPE
+            <span class="d-none d-sm-inline-block">, All rights Reserved</span>
+          </span>
+        </p>
+      </footer>
+    </>
   );
 };
 

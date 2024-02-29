@@ -1,8 +1,8 @@
 import React from "react";
 
-import { ImProfile } from "react-icons/im";
-import { MdAdminPanelSettings } from "react-icons/md";
-import { FaCottonBureau } from "react-icons/fa";
+import { MdAdminPanelSettings, MdPlace } from "react-icons/md";
+import { FaCottonBureau, FaBlog, FaUser } from "react-icons/fa";
+import { BiCategory, BiPackage } from "react-icons/bi";
 
 const Links = [
   { text: "Dashboard", path: ".", icon: <FaCottonBureau />, subNav: [] },
@@ -33,16 +33,44 @@ const Links = [
   //   ],
   // },
   {
-    text: "Users",
-    path: "users",
-    icon: <ImProfile />,
+    text: "Admin",
+    path: "admin",
+    icon: <MdAdminPanelSettings />,
     status: false,
     subNav: [],
   },
   {
-    text: "Admin",
-    path: "admin",
-    icon: <MdAdminPanelSettings />,
+    text: "Users",
+    path: "users",
+    icon: <FaUser />,
+    status: false,
+    subNav: [],
+  },
+  {
+    text: "Packages",
+    path: "packages",
+    icon: <BiPackage />,
+    status: false,
+    subNav: [],
+  },
+  {
+    text: "Blog",
+    path: "blogs",
+    icon: <FaBlog />,
+    status: false,
+    subNav: [],
+  },
+  {
+    text: "Categories",
+    path: "categories",
+    icon: <BiCategory />,
+    status: false,
+    subNav: [],
+  },
+  {
+    text: "Places",
+    path: "places",
+    icon: <MdPlace />,
     status: false,
     subNav: [],
   },
