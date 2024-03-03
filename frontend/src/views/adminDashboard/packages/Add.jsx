@@ -19,20 +19,18 @@ const Add = () => {
   ];
   const [errors, setErrors] = useState({});
   const [initialFormData, setInitialFormData] = useState({});
-  const [formData, setFormData] = useState(
-    {
-      _id: "",
-      title: "",
-      content: "",
-      actualCost: "",
-      discountedCost: "",
-      duration: "",
-      isFlightAvailable: "",
-      categoryId: "",
-      placeId: "",
-      status: "",
-    }
-  );
+  const [formData, setFormData] = useState({
+    _id: "",
+    title: "",
+    content: "",
+    actualCost: "",
+    discountedCost: "",
+    duration: "",
+    isFlightAvailable: "",
+    categoryId: "",
+    placeId: "",
+    status: "",
+  });
   useEffect(() => {
     fetchList();
     if (initialFormData && editMode) {
@@ -132,7 +130,9 @@ const Add = () => {
             >
               Create New
             </button> */}
-              <Link to={`../packages`} className=" btn btn-primary">go back</Link>
+              <Link to={`../packages`} className=" btn btn-primary">
+                go back
+              </Link>
             </div>
           </div>
         </div>
@@ -159,7 +159,10 @@ const Add = () => {
                     </div>
                     <div className="col-12">
                       <label className="form-label">Content</label>
-                      <CKEditorComponent data={content} onChange={handleEditorChange} />
+                      <CKEditorComponent
+                        data={content}
+                        onChange={handleEditorChange}
+                      />
                       {errors && errors.hasOwnProperty("content") && (
                         <span className="alert alert-danger" role="alert">
                           {errors.content}
@@ -167,7 +170,9 @@ const Add = () => {
                       )}
                     </div>
                     <div className="col-12 col-md-6">
-                      <label className="form-label">Actual Cost(Per person)</label>
+                      <label className="form-label">
+                        Actual Cost(Per person)
+                      </label>
                       <input
                         type="number"
                         name="actualCost"
@@ -182,7 +187,9 @@ const Add = () => {
                       )}
                     </div>
                     <div className="col-12 col-md-6">
-                      <label className="form-label">Discounted Cost(Per person)</label>
+                      <label className="form-label">
+                        Discounted Cost(Per person)
+                      </label>
                       <input
                         type="number"
                         name="discountedCost"
@@ -212,7 +219,9 @@ const Add = () => {
                       )}
                     </div>
                     <div className="col-12 col-md-6">
-                      <label className="form-label">Is flight available ?</label>
+                      <label className="form-label">
+                        Is flight available ?
+                      </label>
                       <br></br>
                       <label>
                         <input
@@ -337,23 +346,23 @@ const Add = () => {
                     </div>
                   </div>
                   <div className="col-12 text-center">
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="btn btn-primary me-1 mt-2"
-            >
-              Submit
-            </button>
-            <Link to={`../packages`} className=" btn btn-primary">go back</Link>
-          </div>
+                    <button
+                      type="submit"
+                      onClick={handleSubmit}
+                      className="btn btn-primary me-1 mt-2"
+                    >
+                      Submit
+                    </button>
+                    <Link to={`../packages`} className=" btn btn-primary">
+                      go back
+                    </Link>
+                  </div>
                 </div>
               </section>
             </div>
           </div>
         </div>
-
       </div>
-
     </>
   );
 };

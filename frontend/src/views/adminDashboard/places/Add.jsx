@@ -38,17 +38,18 @@ const Add = ({
       setOptions(data);
     });
   };
-  const fetchCountryList = ()=>{
-    axios.get('https://restcountries.com/v3.1/all')
-  .then(response => {
-    const countries = response.data;
-    const countryNames = countries.map(country => country.name.common);
-    const sortedArray = countryNames.sort();
-    setCountries(sortedArray);
-  })
-  .catch(error => {
-    console.error('Error fetching country data:', error);
-  });
+  const fetchCountryList = () => {
+    axios
+      .get("https://restcountries.com/v3.1/all")
+      .then((response) => {
+        const countries = response.data;
+        const countryNames = countries.map((country) => country.name.common);
+        const sortedArray = countryNames.sort();
+        setCountries(sortedArray);
+      })
+      .catch((error) => {
+        console.error("Error fetching country data:", error);
+      });
   };
   const handleChange = (e) => {
     setFormData({

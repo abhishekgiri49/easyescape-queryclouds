@@ -111,8 +111,7 @@ const forgotPassword = async (req, res) => {
       const subject = "Forgot Password : EASY ESCAPE";
       const message = `
         <h3>Hello Abhishek</h3>
-        <p>Your Password  Reset Token is as follows: ${token}</p>
-        <a href="http://localhost:8080/password-reset?token=${token}">Click here to reset your password.</a><br/><br/>
+        <a href="http://localhost:5173/password-reset?token=${token}">Click here to reset your password.</a><br/><br/>
         <p>Regards...</p>
         <p>EASY ESCAPE  Team.</p>
     `;
@@ -130,4 +129,51 @@ const forgotPassword = async (req, res) => {
     });
   }
 };
-module.exports = { registerUser, loginUser, forgotPassword };
+const resetPassword = async (req, res) => {
+  try {
+    const { token, newPassword, confirmPassword } = req.body;
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({
+        status: 400,
+        message: "Passwords do not match. Please try again.",
+        data: [],
+      });
+    }
+    // Find user by reset token
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    // Check if the user exists and the token is valid
+    if (!user) {
+      return res.status(400).json({
+        status: 400,
+        message: "Invalid or expired token. Please request a new one.",
+        data: [],
+      });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update user's password and clear the reset token fields
+    user.password = hashedPassword;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+
+    // Respond with success message
+    res
+      .status(200)
+      .json({ status: 200, message: "Password reset successful.", data: [] });
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
+      message: `Internal Server Error : ${error.message}`,
+      data: [],
+    });
+  }
+};
+
+module.exports = { registerUser, loginUser, forgotPassword, resetPassword };
