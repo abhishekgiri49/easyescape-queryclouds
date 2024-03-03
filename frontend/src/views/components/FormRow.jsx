@@ -11,9 +11,12 @@ const FormRow = ({
 }) => {
   return (
     <div>
-      <label htmlFor={name} className="form-label">
-        {labeltext || name}
-      </label>
+      <div className="d-flex justify-content-between">
+        <label className="form-label" htmlFor={name}>
+          {labeltext || name}
+        </label>
+      </div>
+
       <input
         type={type || "text"}
         id={name}

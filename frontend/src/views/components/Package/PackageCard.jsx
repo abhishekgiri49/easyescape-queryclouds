@@ -1,13 +1,27 @@
 import productimage from "./../../../assets/images/eCommerce/kashmir.jpg";
-const PackageCard = () => {
+const PackageCard = ({ index, packageData }) => {
   return (
     <>
       <div className="card">
-        <img className="card-img-top" src={productimage} alt="Card image cap" />
+        <img
+          className="card-img-top"
+          src={`/src/assets/uploads/packages/${
+            packageData.image || "default_package.jpg"
+          }`}
+          alt="Card image cap"
+        />
         <div className="card-body">
           <p className="card-title">
-            Magnificent Kashmir Holiday -With H{" "}
-            <span className="selected">6N/7D</span>
+            {packageData.title}{" "}
+            <span className="selected">{packageData.duration}</span>
+            <h1 className="mb-3 text-primary fw-bolder fs-4">
+              <span>
+                {packageData.discountedCost
+                  ? packageData.discountedCost
+                  : packageData.actualCost}
+              </span>
+              <span className="text-900 fs--1 fw-normal">/Per person</span>
+            </h1>
           </p>
           <p className="card-text single-line-list">
             <span>1N Srinagar Houseboat</span>
@@ -28,26 +42,6 @@ const PackageCard = () => {
           <li>Indian Lunch</li>
           <li>Night Tour</li>
         </ul>
-        <div className="card-body">
-          {/* <div className="price">
-            <div className="discount-info">save upto 30% off</div>
-            <div className="original-price">$213</div>
-          </div> */}
-          <div className="includeWrapper">
-            <div className="includeItemCard">
-              <div className="rightSec">
-                <p>
-                  <span className="priceStyle">CAD 200</span>
-                  <span> /Person</span>
-                </p>
-                <p>
-                  <span>Total Price</span>
-                  <span>CAD 320</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </>
   );

@@ -5,7 +5,7 @@ const NavWrapper = styled.div`
     position: sticky;
   }
   .main-navbar .top-navbar {
-    background-color: rgb(115 103 240);
+    background-color: #67ddf096;
     padding-top: 10px;
     padding-bottom: 10px;
   }
@@ -13,7 +13,7 @@ const NavWrapper = styled.div`
     color: #fff;
   }
   .main-navbar .top-navbar .nav-link {
-    color: #fff;
+    color: rgb(0 44 91);
     font-size: 16px;
     font-weight: 500;
   }
@@ -44,7 +44,7 @@ const NavWrapper = styled.div`
     font-family: Arial, sans-serif;
     font-size: 25px;
     font-weight: bold;
-    color: #b8c2cc;
+    color: rgb(255 207 0);
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);

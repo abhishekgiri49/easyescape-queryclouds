@@ -29,4 +29,4 @@ const saveTokenToDatabase = (userId) => {
     console.error("Error saving token to the database:", error);
   }
 };
-module.exports = { saveTokenToDatabase };
+module.exports = { saveTokenToDatabase, generateToken };

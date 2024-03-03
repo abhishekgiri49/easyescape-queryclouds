@@ -26,7 +26,7 @@ const Sidebar = () => {
   const returnLink = (link) => {
     if (Array.isArray(link.subNav) && link.subNav.length > 0) {
       return (
-        <a className="d-flex align-items-center" href="#">
+        <a className="d-flex align-items-center gg" href="#">
           <span className="icon">{link.icon}</span>
           <span className="menu-title text-truncate" data-i18n="Home">
             {link.text}
@@ -38,7 +38,7 @@ const Sidebar = () => {
         <Link
           to={link.path}
           key={link.text}
-          className="d-flex align-items-center"
+          className="d-flex align-items-center aa"
         >
           <span className="icon">{link.icon}</span>
           <span className="menu-title text-truncate">{link.text}</span>
@@ -54,12 +54,9 @@ const Sidebar = () => {
       <div className="navbar-header">
         <ul className="nav navbar-nav flex-row">
           <li className="nav-item me-auto">
-            <a
-              className="navbar-brand"
-              href="../../../starter-kit/ltr/vertical-menu-template/"
-            >
+            <Link className="navbar-brand" to={"/admin/dashboard"}>
               <h2 className="brand-text">Admin Panel</h2>
-            </a>
+            </Link>
           </li>
           <li className="nav-item nav-toggle">
             <a

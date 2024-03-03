@@ -31,7 +31,10 @@ const getBreadcrumbs = (routes) => {
   if (routes && routes.length > 0) {
     // Add custom breadcrumbs from the props and concatenate "/dashboard" to paths
     breadcrumbs.push(
-      ...routes.map(({ name, path }) => ({ name, path: `/dashboard${path}` }))
+      ...routes.map(({ name, path }) => ({
+        name,
+        path: `/admin/dashboard${path}`,
+      }))
     );
   }
   return breadcrumbs;

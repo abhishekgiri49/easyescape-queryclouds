@@ -42,23 +42,10 @@ const AuthService = {
     });
   },
 
-  verifyAccount(payload) {
+  forgotPassword(payload) {
     return new Promise((resolve, reject) => {
       axios
-        .post(`${resource}/api/verify`, payload)
-        .then((response) => {
-          resolve(response.data);
-        })
-        .catch((error) => {
-          reject(error.response);
-        });
-    });
-  },
-
-  forgetPassword(payload) {
-    return new Promise((resolve, reject) => {
-      axios
-        .post(`${resource}/api/forget-password`, payload)
+        .post(`${resource}/forgot-password`, payload)
         .then((response) => {
           resolve(response.data);
         })
@@ -71,7 +58,7 @@ const AuthService = {
   resetPassword(payload) {
     return new Promise((resolve, reject) => {
       axios
-        .post(`${resource}/api/reset-password`, payload)
+        .post(`${resource}/reset-password`, payload)
         .then((response) => {
           resolve(response.data);
         })

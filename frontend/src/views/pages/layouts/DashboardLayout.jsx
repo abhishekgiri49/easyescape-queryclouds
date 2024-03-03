@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
 import { Navbar, Sidebar } from "../../components";
 import { AuthUser } from "./../../../helper/AuthUser";
 import { useState, createContext, useContext } from "react";
 const DashboardContext = createContext();
 const Dashboard = () => {
   const { user, token, logout } = AuthUser();
-
+  const navigate = useNavigate();
   const [isActive, setIsActive] = useState(false);
 
   const toggleSidebar = () => {

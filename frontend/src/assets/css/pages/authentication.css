@@ -1,8 +1,7 @@
 .auth-wrapper {
   display: flex;
   flex-basis: 100%;
-  min-height: 100vh;
-  min-height: calc(var(--vh, 1vh) * 100);
+  min-height: calc(var(--vh, 1vh) * 88);
   width: 100%;
 }
 
@@ -60,7 +59,7 @@
 .auth-wrapper.auth-cover .auth-inner {
   height: 100vh;
   overflow-y: auto;
-  height: calc(var(--vh, 1vh) * 100);
+  height: calc(var(--vh, 1vh) * 88);
 }
 
 .auth-wrapper.auth-cover .brand-logo {

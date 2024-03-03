@@ -5,13 +5,22 @@ import {
   Landing,
   Register,
   Login,
+  ForgotPassword,
+  ResetPassword,
   UserDashboardLayout,
   DashboardLayout,
   Error,
   AdminList,
   UserList,
   Stats,
+  Search,
+  CategoryList,
+  PlaceList,
+  BlogList,
+  PackageList,
+  PackageAdd,
   ProfileDetail,
+  PackageDetail,
 } from "../views";
 
 const AuthorizedRoute = ({ element, roles }) => {
@@ -48,8 +57,20 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
       {
+        path: "search",
+        element: <Search />,
+      },
+      {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "password-reset",
+        element: <ResetPassword />,
       },
     ],
   },
@@ -70,6 +91,30 @@ export const router = createBrowserRouter([
       {
         path: "admin",
         element: <AdminList />,
+      },
+      {
+        path: "categories",
+        element: <CategoryList />,
+      },
+      {
+        path: "places",
+        element: <PlaceList />,
+      },
+      {
+        path: "blogs",
+        element: <BlogList />,
+      },
+      {
+        path: "packages",
+        element: <PackageList />,
+      },
+      {
+        path: "packages/add",
+        element: <PackageAdd />,
+      },
+      {
+        path: "packages/detail/:packageId",
+        element: <PackageDetail />,
       },
     ],
   },
