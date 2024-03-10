@@ -17,7 +17,7 @@ const createCheckoutSession = async (req, res) => {
       orderId: _id,
       // Add any other metadata fields you need
     };
-    const amount = totalAmount * 100;
+    const amount = Math.round(totalAmount * 100);
     const price = await stripe.prices.create({
       product: product.id,
       unit_amount: amount,
