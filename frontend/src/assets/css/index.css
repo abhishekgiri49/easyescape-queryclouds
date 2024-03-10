@@ -116,6 +116,7 @@ span.selected {
 }
 
 .fw-bolder {
+  color: #6e6b7b !important;
   font-weight: 800 !important;
 }
 .fs-4 {
@@ -155,9 +156,13 @@ span.selected {
   padding: 1rem 1rem;
 }
 .searchcontainer {
-  background-color: #67ddf096;
+  background-repeat: no-repeat;
+  background-image: url(../images/travel1.jpg);
   height: 600px;
+  background-size: cover;
+  background-position: center;
 }
+
 .plane {
   margin-top: 150px;
   margin-left: 28px;
@@ -167,12 +172,13 @@ span.selected {
 }
 
 .right {
-  height: 580px;
+  height: 400px;
   width: 40%;
   float: right;
   margin-right: 50px;
   margin-top: 80px;
   position: relative;
+  background: rgba(18, 68, 21, 0.229);
 }
 
 /*  Pagina 1 */
@@ -198,11 +204,13 @@ fieldset {
   width: 84%;
   margin: 30px auto;
   margin-right: 30px;
-  background-color: #47d1d2;
+
   padding: 2em;
   border: none;
 }
-
+.right fieldset label {
+  color: white;
+}
 .reservation {
   text-transform: uppercase;
   font-family: "Hind", sans-serif;
@@ -230,7 +238,7 @@ fieldset {
   padding: 0.5em;
   font-family: "Raleway", sans-serif;
   color: #fff;
-  width: 90%;
+  width: 95.5%;
 }
 
 .left2 {
@@ -508,7 +516,9 @@ th {
   text-align: left;
   line-height: 1.6;
 }
-
+.user-status {
+  color: #6e6b7b !important;
+}
 .bottone3 {
   background-color: transparent;
   font-family: "Hind", sans-serif;
@@ -538,7 +548,7 @@ th {
 /* Footer*/
 
 #footer {
-  background-color: #7367f0;
+  background-color: #e9e8ed;
   padding-bottom: 10px;
 }
 
@@ -635,6 +645,7 @@ ul.mainmenu2 li a {
     top: 50px;
     left: -100%;
     transition: 0.5s;
+    background: rgba(0, 0, 0, 0.2);
   }
 
   header nav.active {
@@ -1247,25 +1258,18 @@ ul.mainmenu2 li a {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 3rem;
+  width: 100%;
 }
 .section-head-title {
-  color: #000000;
-  font-size: 3.6rem;
-  font-family: "Playfair Display", serif;
-}
-/* Features Destinations */
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3rem;
+  color: #fae037;
+  font-size: 3.2rem;
+  font-family: Chalkduster, fantasy;
+  width: 100%;
+  background-color: #387c7c;
+  max-height: 12rem;
+  padding: 0.3rem;
 }
 
-.section-head-title {
-  color: #000000;
-  font-size: 3.6rem;
-  font-family: "Playfair Display", serif;
-}
 section.features {
   padding: 20px 0px;
 }
@@ -1316,23 +1320,63 @@ section.features {
   left: 0;
   background-color: #ffffff;
   border-top-right-radius: 0.6rem;
-  padding: 1.5rem 1.5rem 0 0;
+  padding: 0.5rem 1rem 0 0;
 }
 
 .location {
   display: block;
-  font-size: 1.7rem;
-  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-family: "Lucida Console", "Courier New", monospace;
   font-weight: bold;
   color: #042521;
 }
 
 .country {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-family: "Inter", sans-serif;
   color: #80918e;
   font-weight: 400;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.logo-text {
+  font-size: 1.2rem;
+  margin-left: 10px;
+}
+
+.nav-link {
+  color: #ffffff !important;
+}
+
+.dropdown-menu {
+  background-color: #252525;
+}
+
+.dropdown-item {
+  color: #ffffff !important;
+}
+
+.navbar-toggler-icon {
+  background-color: #ffffff;
+}
+
+.navbar-toggler {
+  border-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .top-navbar {
+    background-color: #009999;
+    color: #ffffff;
+    padding: 5px 0;
+  }
 }
 .loading-screen {
   position: fixed;
@@ -1363,4 +1407,49 @@ section.features {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* plus and minus of number of people */
+
+.quantity {
+  display: flex;
+  margin: 10px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.quantity button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  width: 70px;
+  height: auto;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.quantity button:hover {
+  background-color: #2980b9;
+}
+
+.input-box {
+  width: 100px;
+  text-align: center;
+  border: none;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Hide the number input spin buttons */
+.input-box::-webkit-inner-spin-button,
+.input-box::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-box[type="number"] {
+  -moz-appearance: textfield;
 }

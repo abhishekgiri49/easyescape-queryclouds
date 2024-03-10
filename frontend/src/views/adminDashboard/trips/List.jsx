@@ -4,10 +4,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Breadcrumb, DataTable, Alert } from "../../components";
 import { Link } from "react-router-dom";
-import { PackageService } from "../../../repositories";
-import { PackageAdd } from "../../../views/";
+import { TripService } from "../../../repositories";
+
 const List = () => {
-  const Title = "Package";
+  const Title = "Trip";
   const [anchorEl, setAnchorEl] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [clickedRow, setClickedRow] = useState(null);
@@ -15,24 +15,16 @@ const List = () => {
   const [rows, setRows] = useState([]);
   const [formData, setFormData] = useState({
     _id: null,
-    title: "",
-    content: "",
-    actualCost: "",
-    discountedCost: "",
-    duration: "",
-    isFlightAvailable: "",
-    categoryId: "",
-    placeId: "",
     status: "",
   });
-  const [errors, setErrors] = useState({});
+
   const breadcrumb = [{ name: `${Title} List` }];
   useEffect(() => {
     fetchList();
   }, []);
 
   const fetchList = () => {
-    PackageService.get().then((data) => {
+    TripService.get().then((data) => {
       setRows(data);
     });
   };
@@ -40,64 +32,66 @@ const List = () => {
   const columns = [
     {
       field: "title",
-      headerName: "Title",
+      headerName: "Package Title",
       width: 200,
       renderCell: (params) => (
         <Link
           to={`detail/${params.row._id}`}
           className="d-flex align-items-center"
         >
-          {params.row.title}
+          {params.row.package.title}
         </Link>
       ),
     },
-    { field: "actualCost", headerName: "Actual Cost", width: 200 },
-    { field: "discountedCost", headerName: "Discounted Cost", width: 200 },
-    { field: "duration", headerName: "Duration", width: 200 },
+    { field: "numberOfPeople", headerName: "Number of People", width: 120 },
+    { field: "totalAmount", headerName: "Amount", width: 120 },
+    { field: "email", headerName: "Email", width: 200 },
+    { field: "phone", headerName: "Phone", width: 120 },
     {
-      field: "category",
-      headerName: "Category",
+      field: "bookingStatus",
+      headerName: "Booking Status",
+      width: 160,
+      renderCell: (params) =>
+        params.row.bookingStatus === "Booked" ? (
+          <span className="badge badge-glow bg-primary">Booked</span>
+        ) : (
+          <span className="badge badge-glow bg-danger">Pending</span>
+        ),
+    },
+    {
+      field: "package",
+      headerName: "Package",
       width: 200,
       renderCell: (params) =>
-        params.row.category != "" ? (
-          <span>{params.row.category.title}</span>
+        params.row.package != "" ? (
+          <span>{params.row.package.title}</span>
         ) : (
           <span>None</span>
         ),
     },
     {
-      field: "place",
-      headerName: "Place",
-      width: 200,
+      field: "user",
+      headerName: "User",
+      width: 150,
       renderCell: (params) =>
-        params.row.place != "" ? (
-          <span>{params.row.place.name}</span>
+        params.row.user != "" ? (
+          <span>
+            {params.row.user.firstName + " " + params.row.user.lastName}
+          </span>
         ) : (
           <span>None</span>
         ),
     },
     {
-      field: "status",
-      headerName: "Status",
-      width: 200,
+      field: "paymentStatus",
+      headerName: "Payment Status",
+      width: 160,
       renderCell: (params) =>
-        params.row.status === "1" ? (
-          <span className="badge badge-glow bg-primary">Active</span>
+        params.row.paymentStatus === "Paid" ? (
+          <span className="badge badge-glow bg-primary">Paid</span>
         ) : (
-          <span className="badge badge-glow bg-danger">Inactive</span>
+          <span className="badge badge-glow bg-danger">Pending</span>
         ),
-    },
-    {
-      field: "image",
-      headerName: "Thumbnail",
-      width: 200,
-      renderCell: (params) => (
-        <img
-          src={`/src/assets/uploads/packages/${params.row.image}`}
-          alt=""
-          style={{ height: 50, width: "auto" }}
-        />
-      ),
     },
     {
       field: "actions",
@@ -133,16 +127,8 @@ const List = () => {
     setAnchorEl(null);
   };
 
-  const handleEditAction = (id) => {
-    const rowIndex = rows.findIndex((row) => row._id === id);
-    handleClose();
-    setFormData(rows[rowIndex]);
-    setEditMode(true);
-    setShow(true);
-  };
-
   const handleDeleteAction = (id) => {
-    PackageService.delete(id)
+    TripService.delete(id)
       .then(() => {
         fetchList();
         Alert("success", `${Title} has been deleted successfully`);
@@ -155,54 +141,21 @@ const List = () => {
     setAnchorEl(event.currentTarget);
     setClickedRow(id);
   };
-  const handleOpenModal = () => {
-    setShow(true);
-    setFormData({
-      _id: null,
-      title: "",
-      content: "",
-      actualCost: "",
-      discountedCost: "",
-      duration: "",
-      isFlightAvailable: "",
-      categoryId: "",
-      placeId: "",
-      status: "",
-    });
-    handleClose();
-  };
 
-  const handleCloseModal = () => {
-    setEditMode(false);
-
-    setShow(false);
-  };
   const menuItems = useMemo(
     () => [
-      { label: "Edit", onClick: () => handleEditAction(clickedRow) },
+      // { label: "Edit", onClick: () => handleEditAction(clickedRow) },
       { label: "Delete", onClick: () => handleDeleteAction(clickedRow) },
       // Add more items as needed
     ],
     [clickedRow]
   );
-  
+
   return (
     <div className="content-wrapper">
       <div className="content-header row">
         <div className="content-header-left col-md-9 col-12 mb-2">
           <Breadcrumb routes={breadcrumb} title={`${Title} Management`} />
-        </div>
-        <div className="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-          <div className="mb-1 breadcrumb-right">
-            {/* <button
-              type="button"
-              className="btn btn-primary"
-              onClick={handleOpenModal}
-            >
-              Create New
-            </button> */}
-            <Link to={`add`} className="btn btn-primary">Create new</Link>
-          </div>
         </div>
       </div>
       <div className="content-body">
@@ -218,14 +171,6 @@ const List = () => {
           </div>
         </div>
       </div>
-      {/* <PackageAdd
-        editMode={editMode}
-        initialFormData={formData}
-        onClose={handleCloseModal}
-        onSubmit={handleModalSubmit}
-        errors={errors}
-        show={show}
-      /> */}
     </div>
   );
 };

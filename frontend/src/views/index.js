@@ -22,6 +22,8 @@ export { default as PackageList } from "./adminDashboard/packages/List";
 export { default as PackageAdd } from "./adminDashboard/packages/Add";
 export { default as PackageDetail } from "./adminDashboard/packages/Detail";
 
+export { default as TripList } from "./adminDashboard/trips/List";
+
 export { default as ProfileDetail } from "./userDashboard/Profile/Detail";
 
 export { default as Search } from "./pages/home/Search";
@@ -32,3 +34,13 @@ export { default as ResetPassword } from "./pages/auth/ResetPassword";
 export { default as Error } from "./pages/utils/Error";
 export { default as Stats } from "./pages/utils/Stats";
 export { default as Landing } from "./pages/Landing";
+export { default as HomePackageDetail } from "./pages/Package/PackageDetail";
+export { default as PackageInfoCard } from "./pages/Package/cardComponent/PackageInfoCard";
+export { default as PackageCard } from "./pages/Package/cardComponent/PackageCard";
+export { default as Paynow } from "./pages/Package/payment/stripe/Paynow";
+export { default as Success } from "./pages/Package/payment/stripe/Success";
+
+export { default as PriceCard } from "./pages/Package/cardComponent/PriceCard";
+export { default as ContactCard } from "./pages/Package/cardComponent/ContactCard";
+export { default as PaymentCard } from "./pages/Package/cardComponent/PaymentCard";
+export { default as SpecialRequest } from "./pages/Package/cardComponent/SpecialRequest";

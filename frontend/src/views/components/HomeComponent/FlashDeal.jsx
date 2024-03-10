@@ -54,11 +54,11 @@ const FlashDeal = () => {
     groupedDeals.push(deals.slice(i, i + 3));
   }
   return (
-    <section class="features">
-      <div class="container">
-        <div class="features-content">
-          <div class="section-header">
-            <h3 class="section-head-title">Flash deals</h3>
+    <section className="features">
+      <div className="container">
+        <div className="features-content">
+          <div className="section-header">
+            <h3 className="section-head-title">Flash deals</h3>
           </div>
           <div className="col-12">
             <div

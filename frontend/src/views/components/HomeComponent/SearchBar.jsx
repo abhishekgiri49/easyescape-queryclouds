@@ -57,11 +57,11 @@ const SearchBar = ({ onChangeSearch }) => {
   };
   return (
     <div className="searchcontainer">
-      <img
+      {/* <img
         alt="plane"
         class="plane"
         src="https://i.ibb.co/52bG3RC/landingpage-assets-0005-plane.png"
-      ></img>
+      ></img> */}
 
       <div className="right">
         <fieldset>

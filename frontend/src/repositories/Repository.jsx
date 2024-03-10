@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const baseEndpoint = `http://localhost:8080/api`; // ${baseDomain}
+import { API_URL } from "./../helper/Constant";
 const getToken = () => {
   const tokenString = sessionStorage.getItem("token");
   const userToken = JSON.parse(tokenString);
@@ -9,7 +8,7 @@ const getToken = () => {
 let instance;
 if (getToken()) {
   instance = axios.create({
-    baseURL: baseEndpoint,
+    baseURL: API_URL,
     headers: {
       "Content-type": "application/json",
       Authorization: `${getToken()}`,
@@ -17,7 +16,7 @@ if (getToken()) {
   });
 } else {
   instance = axios.create({
-    baseURL: baseEndpoint,
+    baseURL: API_URL,
     headers: {
       "Content-type": "application/json",
     },

@@ -1,28 +1,35 @@
+import React from "react";
 import { AuthUser } from "./../../../helper/AuthUser";
 import { Link } from "react-router-dom";
 import { Logo } from "../../components";
+import "../../../assets/css/index.css"; // Import CSS file for custom styling
+
 const UserNavbar = () => {
   const { user, token, logout } = AuthUser();
+
   const logoutUser = () => {
     if (token !== undefined) {
       logout();
     }
   };
+
   const renderContent = () => {
     if (user == undefined) {
       return (
+       
         <ul className="nav justify-content-center">
           <li className="nav-item">
-            <Link to="/login" className="nav-link">
+            <Link to="/login" className="nav-link1">
               Login
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/register" className="nav-link">
+            <Link to="/register" className="nav-link1">
               Register
             </Link>
           </li>
         </ul>
+        
       );
     } else {
       return (
@@ -72,12 +79,13 @@ const UserNavbar = () => {
       );
     }
   };
+
   return (
     <div className="top-navbar">
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-4 my-auto d-none d-md-block">
-            <Link to="/">
+            <Link to="/" className="logo-link">
               <Logo />
               <span className="logo-text">EASY ESCAPE</span>
             </Link>

@@ -21,6 +21,9 @@ import {
   PackageAdd,
   ProfileDetail,
   PackageDetail,
+  HomePackageDetail,
+  Success,
+  TripList,
 } from "../views";
 
 const AuthorizedRoute = ({ element, roles }) => {
@@ -72,6 +75,14 @@ export const router = createBrowserRouter([
         path: "password-reset",
         element: <ResetPassword />,
       },
+      {
+        path: "package/detail/:packageId",
+        element: <HomePackageDetail />,
+      },
+      {
+        path: "return",
+        element: <Success />,
+      },
     ],
   },
   {
@@ -115,6 +126,10 @@ export const router = createBrowserRouter([
       {
         path: "packages/detail/:packageId",
         element: <PackageDetail />,
+      },
+      {
+        path: "trips",
+        element: <TripList />,
       },
     ],
   },

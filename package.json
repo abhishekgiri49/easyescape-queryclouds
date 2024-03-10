@@ -19,6 +19,8 @@
     "vite": "^5.0.10"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "dotenv-webpack": "^8.0.1"
   }
 }

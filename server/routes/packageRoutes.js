@@ -45,4 +45,5 @@ router.put(
 
 // Delete a  by ID (requires token validation)
 router.delete("/:id", verifyToken, deleteById);
+router.post("/search", getPackageWithFilters);
 module.exports = router;
