@@ -54,12 +54,9 @@ const Sidebar = () => {
       <div className="navbar-header">
         <ul className="nav navbar-nav flex-row">
           <li className="nav-item me-auto">
-            <a
-              className="navbar-brand"
-              href="../../../starter-kit/ltr/vertical-menu-template/"
-            >
+            <Link className="navbar-brand" to={"/admin/dashboard"}>
               <h2 className="brand-text">Admin Panel</h2>
-            </a>
+            </Link>
           </li>
           <li className="nav-item nav-toggle">
             <a

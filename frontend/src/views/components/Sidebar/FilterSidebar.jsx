@@ -1,4 +1,52 @@
-const FilterNavbar = () => {
+import { useEffect, useState } from "react";
+import { CategoryService } from "../../../repositories";
+import { PlaceService } from "../../../repositories";
+const FilterNavbar = ({ onChange }) => {
+  const [categories, setCategories] = useState([]);
+  const [places, setPlaces] = useState([]);
+  const [formData, setFormData] = useState({
+    priceRange: "all",
+    destinationFilter: "",
+    categoryFilter: [],
+  });
+  useEffect(() => {
+    onChange(formData);
+  }, [formData]);
+  useEffect(() => {
+    fetchFilterList();
+  }, []);
+  const fetchFilterList = () => {
+    CategoryService.get().then((data) => {
+      setCategories(data);
+    });
+    PlaceService.get().then((data) => {
+      setPlaces(data);
+    });
+  };
+  // Handles the onChange event of each input field.
+  const handleChange = (e) => {
+    const { name, value, checked } = e.target;
+
+    if (name === "categoryFilter") {
+      if (checked) {
+        setFormData({
+          ...formData,
+          [name]: [...formData[name], value],
+        });
+      } else {
+        setFormData({
+          ...formData,
+          [name]: formData[name].filter((item) => item !== value),
+        });
+      }
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+    // Pass the updated form data to the parent component
+  };
   return (
     <>
       <div className="sidebar-detached sidebar-left">
@@ -13,191 +61,103 @@ const FilterNavbar = () => {
               <div className="card-body">
                 <div className="multi-range-price">
                   <h6 className="filter-title mt-0">Budget</h6>
-                  <ul className="list-unstyled price-range" id="price-range">
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="radio"
-                          id="priceAll"
-                          name="price-range"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="priceAll">
-                          All
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="radio"
-                          id="priceRange1"
-                          name="price-range"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="priceRange1">
-                          &lt;=$100
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="radio"
-                          id="priceRange2"
-                          name="price-range"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="priceRange2">
-                          $100 - $500
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="radio"
-                          id="priceARange3"
-                          name="price-range"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="priceARange3">
-                          $500 - $100
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="radio"
-                          id="priceRange4"
-                          name="price-range"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="priceRange4">
-                          &gt;= $100
-                        </label>
-                      </div>
-                    </li>
+                  <ul className="list-unstyled priceRange" id="priceRange">
+                    {[
+                      { label: "All", value: "all" },
+                      { label: "<=$100", value: "$0-$100" },
+                      { label: "$100 - $500", value: "$100-$500" },
+                      { label: "$500 - $1000", value: "$500-$1000" },
+                      { label: ">= $1000", value: ">=$1000" },
+                    ].map((range, index) => (
+                      <li key={index}>
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            id={`priceRange${index}`}
+                            name="priceRange"
+                            className="form-check-input"
+                            onChange={handleChange}
+                            value={range.value}
+                            checked={formData.priceRange.includes(range.value)}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor={`priceRange${index}`}
+                          >
+                            {range.label}
+                          </label>
+                        </div>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
                 <div id="product-categories">
                   <h6 className="filter-title">Places</h6>
                   <ul className="list-unstyled categories-list">
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          id="category1"
-                          name="category-filter"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="category1">
-                          Goa
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          id="category2"
-                          name="category-filter"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="category2">
-                          thailand
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          id="category3"
-                          name="category-filter"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="category3">
-                          Dubai
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          id="category4"
-                          name="category-filter"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="category4">
-                          Vietnam
-                        </label>
-                      </div>
-                    </li>
+                    {places &&
+                      places.map((place, index) => (
+                        <li>
+                          <div className="form-check">
+                            <input
+                              type="radio"
+                              id={`destination${index}`}
+                              name="destinationFilter"
+                              className="form-check-input"
+                              onChange={handleChange}
+                              value={place.country}
+                              checked={
+                                formData.destinationFilter &&
+                                formData.destinationFilter == place.country
+                              }
+                            />
+                            <label className="form-check-label" for="category4">
+                              {place.country}
+                            </label>
+                          </div>
+                        </li>
+                      ))}
                   </ul>
                 </div>
                 <div id="product-categories">
                   <h6 className="filter-title">Categories</h6>
                   <ul className="list-unstyled categories-list">
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          id="category1"
-                          name="category-filter"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="category1">
-                          Cultures
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          id="category2"
-                          name="category-filter"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="category2">
-                          Adventure
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          id="category3"
-                          name="category-filter"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="category3">
-                          Honeymoon
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          id="category4"
-                          name="category-filter"
-                          className="form-check-input"
-                        />
-                        <label className="form-check-label" for="category4">
-                          Pilgrimage
-                        </label>
-                      </div>
-                    </li>
+                    {categories &&
+                      categories.map((category, index) => (
+                        <li>
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              id={`category${index}`}
+                              name="categoryFilter"
+                              className="form-check-input"
+                              onChange={handleChange}
+                              value={category.title}
+                              checked={
+                                formData.categoryFilter &&
+                                formData.categoryFilter.includes(category.title)
+                              }
+                            />
+                            <label className="form-check-label" for="category4">
+                              {category.title}
+                            </label>
+                          </div>
+                        </li>
+                      ))}
                   </ul>
                 </div>
                 <div id="clear-filters">
-                  <button type="button" className="btn w-100 btn-primary">
+                  <button
+                    type="button"
+                    className="btn w-100 btn-primary"
+                    onClick={() =>
+                      setFormData({
+                        priceRange: "all",
+                        destinationFilter: "",
+                        categoryFilter: [],
+                      })
+                    }
+                  >
                     Clear All Filters
                   </button>
                 </div>

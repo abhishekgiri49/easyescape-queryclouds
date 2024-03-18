@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
+import axios from "axios";
 import { CategoryService } from "../../../repositories";
 const Add = ({
   editMode,
@@ -14,16 +15,19 @@ const Add = ({
   const Title = "Place";
   const [file, setFile] = useState(null);
   const [options, setOptions] = useState([]);
+  const [countries, setCountries] = useState([]);
   const [formData, setFormData] = useState(
     initialFormData || {
       _id: "",
       name: "",
+      country: "",
       categoryId: "",
       status: "",
     }
   );
   useEffect(() => {
     fetchCategoryList();
+    fetchCountryList();
     if (initialFormData && editMode) {
       initialFormData.categoryId = initialFormData.category._id;
       setFormData(initialFormData);
@@ -33,6 +37,18 @@ const Add = ({
     CategoryService.get().then((data) => {
       setOptions(data);
     });
+  };
+  const fetchCountryList = ()=>{
+    axios.get('https://restcountries.com/v3.1/all')
+  .then(response => {
+    const countries = response.data;
+    const countryNames = countries.map(country => country.name.common);
+    const sortedArray = countryNames.sort();
+    setCountries(sortedArray);
+  })
+  .catch(error => {
+    console.error('Error fetching country data:', error);
+  });
   };
   const handleChange = (e) => {
     setFormData({
@@ -44,6 +60,7 @@ const Add = ({
   const handleSubmit = () => {
     const finalFormData = new FormData();
     finalFormData.append("name", formData.name);
+    finalFormData.append("country", formData.country);
     finalFormData.append("categoryId", formData.categoryId);
     finalFormData.append("status", formData.status);
     finalFormData.append("image", file); // Assuming you have a 'file' state for the selected image
@@ -73,6 +90,28 @@ const Add = ({
               {errors && errors.hasOwnProperty("name") && (
                 <span className="alert alert-danger" role="alert">
                   {errors.name}
+                </span>
+              )}
+            </div>
+            <div className="col-12">
+              <label className="form-label">Country</label>
+              <select
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+                className="form-select"
+              >
+                <option value="">Select a country</option>
+                {countries &&
+                  countries.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+              </select>
+              {errors && errors.hasOwnProperty("country") && (
+                <span className="alert alert-danger" role="alert">
+                  {errors.country}
                 </span>
               )}
             </div>

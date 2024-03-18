@@ -1,8 +1,8 @@
 import React from "react";
 
-const Page4 = () => {
+const OurHighlights = () => {
   return (
-    <div id="page4">
+    <div id="page4" style={{marginTop:'10rem'}}>
       <h2 className="base">Our base consists of:</h2>
       <table className="home-table">
         <tr>
@@ -33,4 +33,4 @@ const Page4 = () => {
     </div>
   );
 };
-export default Page4;
+export default OurHighlights;

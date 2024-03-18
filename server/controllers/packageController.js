@@ -1,5 +1,6 @@
 const Package = require("../models/Package");
-
+const Place = require("../models/Place");
+const Category = require("../models/Category");
 // Create a new blog
 const create = async (req, res) => {
   try {
@@ -56,7 +57,76 @@ const getAll = async (req, res) => {
       .json({ status: 500, data: [], message: "Internal Server Error" });
   }
 };
+// Get all packages by filter
+const getPackageWithFilters = async (req, res) => {
+  try {
+    let query = Package.find().populate(["category", "place"]);
+    const filters = req.body;
+    if (filters.priceRange && filters.priceRange !== "all") {
+      let minPrice, maxPrice;
 
+      // Determine the minimum and maximum prices based on the selected range
+      switch (filters.priceRange) {
+        case "$0-$100":
+          minPrice = 0;
+          maxPrice = 100;
+          break;
+        case "$100-$500":
+          minPrice = 100;
+          maxPrice = 500;
+          break;
+        case "$500-$1000":
+          minPrice = 500;
+          maxPrice = 1000;
+          break;
+        case ">= $1000":
+          minPrice = 1000;
+          break;
+        default:
+          break;
+      }
+
+      // Construct the query to filter packages within the specified price range
+      if (minPrice !== undefined) {
+        query = query.where("actualCost");
+        if (maxPrice !== undefined) {
+          query = query.gte(minPrice).lte(maxPrice);
+        } else {
+          query = query.gte(minPrice);
+        }
+      }
+    }
+
+    if (filters.destinationFilter) {
+      const destination = await Place.findOne({
+        country: filters.destinationFilter,
+      });
+      query = query.where("place").equals(destination._id);
+    }
+
+    if (filters.categoryFilter && filters.categoryFilter.length > 0) {
+      const categories = await Category.find({
+        title: { $in: filters.categoryFilter },
+      });
+      const categoryIds = categories.map((category) => category._id);
+      query = query.where("category").in(categoryIds);
+    }
+
+    if (filters.place) {
+      const place = await Place.findOne({ name: filters.place });
+      query = query.where("place").equals(place._id);
+    }
+
+    const packages = await query.exec();
+    // Sort by date descending
+    res.status(200).json({ status: 201, data: packages, message: "success" });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ status: 500, data: [], message: "Internal Server Error" });
+  }
+};
 // Get a specific package by ID
 const getById = async (req, res) => {
   try {
@@ -150,4 +220,5 @@ module.exports = {
   getById,
   updateById,
   deleteById,
+  getPackageWithFilters,
 };

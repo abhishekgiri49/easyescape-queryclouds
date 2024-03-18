@@ -14,9 +14,9 @@ const PackageService = {
         });
     });
   },
-  getbyUser(id) {
+  getPackageWithFilters(payload) {
     return new Promise((resolve, reject) => {
-      Repository.get(`${resource}/user/${id}/posts`)
+      Repository.post(`${resource}/search`, payload)
         .then((response) => {
           resolve(response.data.data);
         })

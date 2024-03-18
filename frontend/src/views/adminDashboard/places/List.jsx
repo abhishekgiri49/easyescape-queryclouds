@@ -16,6 +16,7 @@ const List = () => {
   const [formData, setFormData] = useState({
     _id: null,
     name: "",
+    country: "",
     category: "",
     status: "",
   });
@@ -32,7 +33,8 @@ const List = () => {
   };
 
   const columns = [
-    { field: "name", headerName: "name", width: 200 },
+    { field: "name", headerName: "Name", width: 200 },
+    { field: "country", headerName: "Country", width: 200 },
     {
       field: "category",
       headerName: "Category",

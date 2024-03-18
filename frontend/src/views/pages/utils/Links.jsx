@@ -3,7 +3,7 @@ import React from "react";
 import { MdAdminPanelSettings, MdPlace } from "react-icons/md";
 import { FaCottonBureau, FaBlog, FaUser } from "react-icons/fa";
 import { BiCategory, BiPackage } from "react-icons/bi";
-
+import { SiTripdotcom } from "react-icons/si";
 const Links = [
   { text: "Dashboard", path: ".", icon: <FaCottonBureau />, subNav: [] },
   // {
@@ -50,6 +50,13 @@ const Links = [
     text: "Packages",
     path: "packages",
     icon: <BiPackage />,
+    status: false,
+    subNav: [],
+  },
+  {
+    text: "Trips",
+    path: "trips",
+    icon: <SiTripdotcom />,
     status: false,
     subNav: [],
   },

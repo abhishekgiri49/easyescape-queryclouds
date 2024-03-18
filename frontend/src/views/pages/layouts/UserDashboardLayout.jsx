@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
-import { UserNavbar } from "../../components";
+import { UserNavbar, UserSidebar, Footer } from "../../components";
 import styled from "styled-components";
 
+import "../../../assets/css/pages/app-email.css";
 import NavWrapper from "../../../assets/wrappers/Navbar";
 const HomeLayout = () => {
   return (
@@ -10,10 +11,17 @@ const HomeLayout = () => {
         <NavWrapper>
           <div className="main-navbar shadow-sm sticky-top">
             <UserNavbar />
-
-            <Outlet />
+            <div class="content-wrapper container-xxl p-1">
+              <div class="sidebar-left">
+                <UserSidebar />
+              </div>
+              <div class="content-right">
+                <Outlet />
+              </div>
+            </div>
           </div>
         </NavWrapper>
+        <Footer />
       </div>
     </Wrapper>
   );

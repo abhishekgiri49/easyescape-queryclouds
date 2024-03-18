@@ -4,7 +4,6 @@ const {
   registerUser,
   loginUser,
   forgotPassword,
-  resetPassword,
 } = require("../controllers/authController");
 const {
   validateRegistration,
@@ -20,5 +19,4 @@ router.post("/login", validateLogin, validate, loginUser);
 
 //forgot password
 router.post("/forgot-password", forgotPassword);
-router.post("/reset-password", resetPassword);
 module.exports = router;

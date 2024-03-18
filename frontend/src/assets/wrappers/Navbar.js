@@ -4,8 +4,12 @@ const NavWrapper = styled.div`
   .main-navbar {
     position: sticky;
   }
+  .nav-item1{
+    font-size: 20px;
+  }
   .main-navbar .top-navbar {
-    background-color: #67ddf096;
+    background-color: #009999
+    ;
     padding-top: 10px;
     padding-bottom: 10px;
   }
@@ -38,7 +42,15 @@ const NavWrapper = styled.div`
   .main-navbar .navbar .nav-item .nav-link {
     padding: 8px 20px;
     color: #000;
-    font-size: 15px;
+    font-size: 20px;
+  }
+  .nav .nav-item .nav-link1 {
+    padding: 8px 20px;
+    color: white;
+    font-size: 20px;
+  }
+  .nav{
+    padding:16px;
   }
   span.logo-text {
     font-family: Arial, sans-serif;

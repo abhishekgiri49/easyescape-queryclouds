@@ -185,52 +185,7 @@ const List = () => {
     ],
     [clickedRow]
   );
-  const handleModalSubmit = (formData) => {
-    if (editMode) {
-      // If in edit mode, update existing admin
-      PackageService.update(clickedRow, formData)
-        .then(() => {
-          setErrors({});
-          handleCloseModal();
-          Alert("success", `${Title} has been updated successfully`);
-          fetchList();
-          setEditMode(false);
-          handleClose();
-          // Optionally, you can redirect or perform other actions after successful update
-        })
-        .catch((error) => {
-          handleErrors(error);
-        });
-    } else {
-      // If not in edit mode, create new admin
-      PackageService.create(formData)
-        .then(() => {
-          setErrors({});
-          handleCloseModal();
-          Alert("success", `${Title} data has been created successfully`);
-          fetchList();
-          handleClose();
-          // Optionally, you can redirect or perform other actions after successful addition
-        })
-        .catch((error) => {
-          handleErrors(error);
-        });
-    }
-    // Handle form submission logic here
-  };
-  const handleErrors = (error) => {
-    if (error.status === 422) {
-      const newErrors = {};
-      error.data.data.forEach((item) => {
-        const fieldName = item.path;
-        const errorMsg = item.msg;
-        newErrors[fieldName] = errorMsg;
-      });
-      setErrors(newErrors);
-    } else {
-      Alert("error", `Error performing. Please try again.`);
-    }
-  };
+  
   return (
     <div className="content-wrapper">
       <div className="content-header row">

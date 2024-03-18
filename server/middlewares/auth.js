@@ -3,14 +3,13 @@ const jwt = require("jsonwebtoken");
 
 const verifyToken = async (req, res, next) => {
   const token = req.header("Authorization");
-  const parsedToken = token.slice(7);
   if (!token)
     return res
       .status(401)
       .json({ message: "Access denied. Token not provided." });
 
   try {
-    const decoded = jwt.verify(parsedToken, "runner");
+    const decoded = jwt.verify(token, "runner");
     const user = await User.findOne({
       _id: decoded.userId,
     });

@@ -1,26 +1,33 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { FaAlignJustify } from "react-icons/fa";
 import {
-  Page2,
   FlashDeal,
   TrendingBlogs,
   SearchBar,
-  Page4,
+  OurHighlights,
+  FeaturedDestination,
   Sin2,
   Footer,
 } from "../components";
 
 const Landing = () => {
+  const [formData, setFormData] = useState([]);
+  const handleFilters = (data) => {
+    setFormData({
+      ...formData,
+      ...data,
+    });
+  };
   return (
     <>
-      <SearchBar />
-      <Page2 />
+      <SearchBar onChangeSearch={handleFilters} />
+      <FeaturedDestination />
       <FlashDeal />
       <TrendingBlogs />
-      <Page4 />
+      <OurHighlights />
 
       {/* <Sin2 /> */}
-      <Footer />
     </>
   );
 };
