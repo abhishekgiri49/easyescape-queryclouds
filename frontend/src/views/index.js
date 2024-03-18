@@ -44,5 +44,3 @@ export { default as PriceCard } from "./pages/Package/cardComponent/PriceCard";
 export { default as ContactCard } from "./pages/Package/cardComponent/ContactCard";
 export { default as PaymentCard } from "./pages/Package/cardComponent/PaymentCard";
 export { default as SpecialRequest } from "./pages/Package/cardComponent/SpecialRequest";
-
-export { default as Category } from "./pages/home/idea/Category";
