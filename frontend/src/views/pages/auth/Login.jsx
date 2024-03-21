@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Logo, FormRow } from "../../components";
-import { Link } from "react-router-dom";
+import { Logo, FormRow, Alert } from "../../components";
+import { Link, useNavigate } from "react-router-dom";
 import "../../../assets/css/pages/authentication.css";
 import { AuthService } from "../../../repositories";
-import { useNavigate } from "react-router-dom";
 import { AuthUser } from "./../../../helper/AuthUser";
 const Login = () => {
   const navigate = useNavigate();
@@ -21,9 +20,9 @@ const Login = () => {
         setErrors({});
         setToken(res.data.user, res.data.token);
         if (res.data.user.role == "Admin") {
-          navigate("/admin/dashboard");
+          window.location.href = "/admin/dashboard";
         } else {
-          navigate("/dashboard");
+          window.location.href = "/";
         }
 
         // Optionally, you can redirect or perform other actions after successful addition
@@ -38,7 +37,7 @@ const Login = () => {
           });
           setErrors(newErrors);
         } else {
-          setErrorMessage("Error registering. Please try again.");
+          Alert("error", error.data.message);
         }
       });
     // api call

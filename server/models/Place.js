@@ -7,6 +7,7 @@ const placeSchema = new mongoose.Schema({
     required: true,
   },
   name: { type: String, required: true },
+  country: { type: String },
   status: { type: String },
   image: { type: String },
   // Add other fields as needed

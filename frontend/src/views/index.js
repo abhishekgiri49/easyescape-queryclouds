@@ -21,10 +21,16 @@ export { default as BlogAdd } from "./adminDashboard/blogs/Add";
 export { default as PackageList } from "./adminDashboard/packages/List";
 export { default as PackageAdd } from "./adminDashboard/packages/Add";
 export { default as PackageDetail } from "./adminDashboard/packages/Detail";
+export { default as PackageTags } from "./adminDashboard/packages/Tags";
+export { default as PackageItinerary } from "./adminDashboard/packages/Itinerary";
 
 export { default as TripList } from "./adminDashboard/trips/List";
 
 export { default as ProfileDetail } from "./userDashboard/Profile/Detail";
+export { default as UserDashboard } from "./userDashboard/Dashboard";
+export { default as UserTripList } from "./userDashboard/Trips/List";
+export { default as UserTripDetail } from "./userDashboard/Trips/Detail";
+export { default as UserChangePassword } from "./userDashboard/Profile/ChangePassword";
 
 export { default as Search } from "./pages/home/Search";
 export { default as Register } from "./pages/auth/Register";
@@ -44,3 +50,7 @@ export { default as PriceCard } from "./pages/Package/cardComponent/PriceCard";
 export { default as ContactCard } from "./pages/Package/cardComponent/ContactCard";
 export { default as PaymentCard } from "./pages/Package/cardComponent/PaymentCard";
 export { default as SpecialRequest } from "./pages/Package/cardComponent/SpecialRequest";
+
+export { default as Category } from "./pages/home/idea/Category";
+export { default as IdeaBlogList } from "./pages/home/idea/BlogList";
+export { default as IdeaBlogDetail } from "./pages/home/idea/BlogDetail";

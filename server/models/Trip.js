@@ -22,6 +22,8 @@ const tripSchema = new mongoose.Schema({
   specialRequest: String,
   departureDate: Date,
   returnDate: Date,
+  paymentSessionId: String,
+  paymentIntent: String,
   paymentMethod: String,
   paymentStatus: String,
 });

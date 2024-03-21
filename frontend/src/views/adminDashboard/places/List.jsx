@@ -127,6 +127,7 @@ const List = () => {
   };
   const handleOpenModal = () => {
     setShow(true);
+    setFormData({ _id: null, name: "", country: "", category: "", status: "" });
     handleClose();
   };
 

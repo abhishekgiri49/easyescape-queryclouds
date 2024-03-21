@@ -14,9 +14,11 @@ const List = () => {
   const [show, setShow] = useState(null);
   const [rows, setRows] = useState([]);
   const [formData, setFormData] = useState({
-    _id: null,
-    name: "",
-    category: "",
+    _id: "",
+    title: "",
+    description: "",
+    categoryId: "",
+    placeId: "",
     status: "",
   });
   const [errors, setErrors] = useState({});
@@ -136,6 +138,14 @@ const List = () => {
   };
   const handleOpenModal = () => {
     setShow(true);
+    setFormData({
+      _id: "",
+      title: "",
+      description: "",
+      categoryId: "",
+      placeId: "",
+      status: "",
+    });
     handleClose();
   };
 

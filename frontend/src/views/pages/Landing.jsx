@@ -7,7 +7,6 @@ import {
   SearchBar,
   OurHighlights,
   FeaturedDestination,
-  Sin2,
   Footer,
 } from "../components";
 
@@ -26,8 +25,6 @@ const Landing = () => {
       <FlashDeal />
       <TrendingBlogs />
       <OurHighlights />
-
-      {/* <Sin2 /> */}
     </>
   );
 };

@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Breadcrumb, DataTable, Alert } from "../../components";
 import { Link } from "react-router-dom";
 import { PackageService } from "../../../repositories";
-import { PackageAdd } from "../../../views/";
+import { PackageAdd } from "../../../views";
 const List = () => {
   const Title = "Package";
   const [anchorEl, setAnchorEl] = useState(null);
@@ -174,7 +174,18 @@ const List = () => {
 
   const handleCloseModal = () => {
     setEditMode(false);
-
+    setFormData({
+      _id: null,
+      title: "",
+      content: "",
+      actualCost: "",
+      discountedCost: "",
+      duration: "",
+      isFlightAvailable: "",
+      categoryId: "",
+      placeId: "",
+      status: "",
+    });
     setShow(false);
   };
   const menuItems = useMemo(
@@ -185,7 +196,52 @@ const List = () => {
     ],
     [clickedRow]
   );
-  
+  const handleModalSubmit = (formData) => {
+    if (editMode) {
+      // If in edit mode, update existing admin
+      PackageService.update(clickedRow, formData)
+        .then(() => {
+          setErrors({});
+          handleCloseModal();
+          Alert("success", `${Title} has been updated successfully`);
+          fetchList();
+          setEditMode(false);
+          handleClose();
+          // Optionally, you can redirect or perform other actions after successful update
+        })
+        .catch((error) => {
+          handleErrors(error);
+        });
+    } else {
+      // If not in edit mode, create new admin
+      PackageService.create(formData)
+        .then(() => {
+          setErrors({});
+          handleCloseModal();
+          Alert("success", `${Title} data has been created successfully`);
+          fetchList();
+          handleClose();
+          // Optionally, you can redirect or perform other actions after successful addition
+        })
+        .catch((error) => {
+          handleErrors(error);
+        });
+    }
+    // Handle form submission logic here
+  };
+  const handleErrors = (error) => {
+    if (error.status === 422) {
+      const newErrors = {};
+      error.data.data.forEach((item) => {
+        const fieldName = item.path;
+        const errorMsg = item.msg;
+        newErrors[fieldName] = errorMsg;
+      });
+      setErrors(newErrors);
+    } else {
+      Alert("error", `Error performing. Please try again.`);
+    }
+  };
   return (
     <div className="content-wrapper">
       <div className="content-header row">
@@ -194,14 +250,13 @@ const List = () => {
         </div>
         <div className="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
           <div className="mb-1 breadcrumb-right">
-            {/* <button
+            <button
               type="button"
               className="btn btn-primary"
               onClick={handleOpenModal}
             >
               Create New
-            </button> */}
-            <Link to={`add`} className="btn btn-primary">Create new</Link>
+            </button>
           </div>
         </div>
       </div>
@@ -218,14 +273,14 @@ const List = () => {
           </div>
         </div>
       </div>
-      {/* <PackageAdd
+      <PackageAdd
         editMode={editMode}
         initialFormData={formData}
         onClose={handleCloseModal}
         onSubmit={handleModalSubmit}
         errors={errors}
         show={show}
-      /> */}
+      />
     </div>
   );
 };

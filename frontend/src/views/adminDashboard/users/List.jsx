@@ -99,6 +99,15 @@ const List = () => {
   };
   const handleOpenModal = () => {
     setShow(true);
+    setFormData({
+      _id: null,
+      firstName: "",
+      lastName: "",
+      username: "",
+      email: "",
+      password: "",
+      phoneNumber: "",
+    });
     handleClose();
   };
 

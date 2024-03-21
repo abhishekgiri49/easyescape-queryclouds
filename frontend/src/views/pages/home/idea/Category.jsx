@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { CategoryService } from "../../../../repositories";
 const Category = () => {
   const Title = "Category";
@@ -30,7 +31,7 @@ const Category = () => {
                     rows.map((row) => (
                       <div class="col-xl-3 col-lg-4 col-sm-6">
                         <div class="box">
-                          <a href="#">
+                          <Link to={`/idea/search?category=${row.title}`}>
                             <img
                               src={`/src/assets/uploads/categories/${row.image}`}
                               alt=""
@@ -38,7 +39,7 @@ const Category = () => {
                             <div class="box__title">
                               <h6>{row.title}</h6>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     ))}

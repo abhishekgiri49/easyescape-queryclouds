@@ -196,7 +196,35 @@ const updateById = async (req, res) => {
       .json({ status: 500, data: [], message: "Internal Server Error" });
   }
 };
+// Update a Item by ID
+const updatePackageIncludedById = async (req, res) => {
+  try {
+    const { travelIncluded } = req.body;
+    let updateFields = {
+      travelIncluded,
+    };
 
+    const updatedPackage = await Package.findByIdAndUpdate(
+      req.params.id,
+      updateFields,
+      { new: true }
+    );
+    if (!updatedPackage)
+      return res
+        .status(404)
+        .json({ status: 404, data: [], message: "Package not found" });
+    res.json({
+      status: 200,
+      data: updatedPackage,
+      message: "Package updated successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ status: 500, data: [], message: "Internal Server Error" });
+  }
+};
 // Delete a  by ID
 const deleteById = async (req, res) => {
   try {
@@ -219,6 +247,7 @@ module.exports = {
   getAll,
   getById,
   updateById,
+  updatePackageIncludedById,
   deleteById,
   getPackageWithFilters,
 };

@@ -92,21 +92,6 @@ const SearchBar = ({ onChangeSearch }) => {
               value={formData.checkInDate}
               onChange={handleChange}
             />
-
-            <label>ADULTS</label>
-            <input
-              list="adults"
-              id="adults-number"
-              name="numberOfPeople"
-              value={formData.numberOfPeople}
-              onChange={handleChange}
-            />
-            <datalist id="adults">
-              <option value="1 adult" />
-              <option value="2 adults" />
-              <option value="3 adults" />
-              <option value="+3 adults" />
-            </datalist>
           </div>
 
           <div className="right2">
@@ -119,22 +104,10 @@ const SearchBar = ({ onChangeSearch }) => {
               value={formData.checkOutDate}
               onChange={handleChange}
             />
-            <label>CHILDREN</label>
-            <input
-              list="children"
-              id="children-number"
-              name="children-number"
-            />
-            <datalist id="children">
-              <option value="No children" />
-              <option value="1" />
-              <option value="2" />
-              <option value="3" />
-            </datalist>
           </div>
 
           <div className="button">
-            <button className="btn" onClick={search}>
+            <button className="searchbtn" onClick={search}>
               Search
             </button>
           </div>

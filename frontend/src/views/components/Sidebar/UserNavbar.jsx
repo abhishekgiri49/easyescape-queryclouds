@@ -16,29 +16,33 @@ const UserNavbar = () => {
   const renderContent = () => {
     if (user == undefined) {
       return (
-       
         <ul className="nav justify-content-center">
           <li className="nav-item">
-            <Link to="/login" className="nav-link1">
+            <Link to="/idea/category" className="nav-link">
+              Trip Ideas
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">
               Login
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/register" className="nav-link1">
+            <Link to="/register" className="nav-link">
               Register
             </Link>
           </li>
         </ul>
-        
       );
     } else {
       return (
         <ul className="nav justify-content-center">
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              <i className="fa fa-heart"></i> Wishlist
-            </a>
+            <Link to="/idea/category" className="nav-link">
+              Trip Ideas
+            </Link>
           </li>
+
           <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
@@ -53,21 +57,28 @@ const UserNavbar = () => {
             </a>
             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to={"/dashboard"}>
+                  <i className="fa fa-user"></i> Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to={"/dashboard/account"}>
                   <i className="fa fa-user"></i> Profile
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
-                  <i className="fa fa-list"></i> My Bookings
-                </a>
+                <Link className="dropdown-item" to={"/dashboard/trips"}>
+                  <i className="fa fa-list"></i> My Trips
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
-                  <i className="fa fa-heart"></i> My Wishlist
-                </a>
+                <Link
+                  className="dropdown-item"
+                  to={"/dashboard/change-password"}
+                >
+                  <i className="fa fa-user"></i> Change Password
+                </Link>
               </li>
-
               <li>
                 <span className="dropdown-item" onClick={logoutUser}>
                   <i className="fa fa-sign-out"></i> Logout

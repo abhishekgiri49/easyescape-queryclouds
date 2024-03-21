@@ -8,7 +8,9 @@ const packageSchema = new mongoose.Schema({
   duration: { type: String, required: true },
   isFlightAvailable: { type: String },
   status: { type: String },
+  travelIncluded: [{ type: String }],
   image: { type: String },
+
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category", // Reference to the Category model

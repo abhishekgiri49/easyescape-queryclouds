@@ -81,6 +81,17 @@ const PackageService = {
         });
     });
   },
+  updatePackageIncluded(id, payload) {
+    return new Promise((resolve, reject) => {
+      Repository.put(`${resource}/update-included/${id}`, payload)
+        .then((response) => {
+          resolve(response.data.data);
+        })
+        .catch((error) => {
+          reject(error.response);
+        });
+    });
+  },
 
   delete(id) {
     return new Promise((resolve, reject) => {

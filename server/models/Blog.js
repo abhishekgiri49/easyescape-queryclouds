@@ -12,8 +12,9 @@ const blogSchema = new mongoose.Schema({
     required: true,
   },
   title: { type: String, required: true },
+  postedDate: { type: Date, default: Date.now },
   description: { type: String },
-  tag:{type:String},
+  tag: { type: String },
   status: { type: String },
   image: { type: String },
   // Add other fields as needed

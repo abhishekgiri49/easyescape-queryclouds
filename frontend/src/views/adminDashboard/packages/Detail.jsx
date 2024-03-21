@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
 import { PackageService } from "../../../repositories";
-import "../../../assets/css/pages/page-profile.css";
+import "../../../assets/css/pages/app-invoice.css";
 import { Breadcrumb, DataTable, Alert } from "../../components";
+import { PackageTags, PackageItinerary } from "../../../views";
 const Detail = () => {
   const [packageDetail, setPackageDetail] = useState({});
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const Title = "Package";
   const { packageId } = useParams();
   const breadcrumb = [
@@ -36,26 +43,26 @@ const Detail = () => {
           </div>
         </div>
         <div class="content-body">
-          <div id="user-profile">
-            <div class="row">
-              <div class="col-12">
-                <div class="card profile-header mb-2">
-                  <img
-                    class="card-img-top"
-                    src={`/src/assets/uploads/packages/${
-                      packageDetail.image || "default_package.jpg"
-                    }`}
-                    alt="Package Image"
-                  />
-                </div>
-              </div>
-            </div>
+          <section class="invoice-preview-wrapper">
+            <div class="row invoice-preview">
+              <div class="col-xl-12 col-md-12 col-12">
+                <div class="card invoice-preview-card">
+                  <div class="card-body invoice-padding pb-0">
+                    <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
+                      <img
+                        class="card-img-top"
+                        src={`/src/assets/uploads/packages/${
+                          packageDetail.image || "default_package.jpg"
+                        }`}
+                        alt="Package Image"
+                      />
+                    </div>
+                  </div>
 
-            <section id="profile-info">
-              <div class="row">
-                <div class="col-lg-9 col-12 order-1 order-lg-2">
-                  <div class="card">
-                    <div class="card-body">
+                  <hr class="invoice-spacing" />
+
+                  <div class="card-body invoice-padding pt-0">
+                    <div class="row invoice-spacing">
                       <div
                         dangerouslySetInnerHTML={{
                           __html: packageDetail.content,
@@ -63,38 +70,61 @@ const Detail = () => {
                       />
                     </div>
                   </div>
-                </div>
+                  <div class="row">
+                    <div class="col-xl-6 col-md-6 col-6">
+                      <PackageTags />
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-6">
+                      <PackageItinerary />
+                    </div>
+                  </div>
 
-                <div class="col-lg-3 col-12 order-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="mb-75">About</h5>
-                      <p class="card-text">
-                        Tart I love sugar plum I love oat cake. Sweet ⭐️ roll
-                        caramels I love jujubes. Topping cake wafer.
-                      </p>
-                      <div class="mt-2">
-                        <h5 class="mb-75">Joined:</h5>
-                        <p class="card-text">November 15, 2015</p>
+                  <div class="card-body invoice-padding pb-0">
+                    <div class="row invoice-sales-total-wrapper">
+                      <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
+                        <p class="card-text mb-0">
+                          <span class="fw-bold">Duration:</span>{" "}
+                          <span class="ms-75">{packageDetail.duration}</span>
+                        </p>
+                        <p class="card-text mb-0">
+                          <span class="fw-bold">Is Flight Available:</span>{" "}
+                          <span class="ms-75">
+                            {packageDetail.isFlightAvailable == 1
+                              ? "Yes"
+                              : "No"}
+                          </span>
+                        </p>
+                        <p class="card-text mb-0">
+                          <span class="fw-bold">Status:</span>{" "}
+                          <span class="ms-75">
+                            {packageDetail.status == 1 ? "Active" : "Inactive"}
+                          </span>
+                        </p>
                       </div>
-                      <div class="mt-2">
-                        <h5 class="mb-75">Lives:</h5>
-                        <p class="card-text">New York, USA</p>
-                      </div>
-                      <div class="mt-2">
-                        <h5 class="mb-75">Email:</h5>
-                        <p class="card-text">bucketful@fiendhead.org</p>
-                      </div>
-                      <div class="mt-2">
-                        <h5 class="mb-50">Website:</h5>
-                        <p class="card-text mb-0">www.pixinvent.com</p>
+                      <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
+                        <div class="invoice-total-wrapper">
+                          <div class="invoice-total-item">
+                            <p class="invoice-total-title">Actual Price:</p>
+                            <p class="invoice-total-amount">
+                              ${packageDetail.actualCost}
+                            </p>
+                          </div>
+                          <div class="invoice-total-item">
+                            <p class="invoice-total-title">Discounted Price:</p>
+                            <p class="invoice-total-amount">
+                              ${packageDetail.discountedCost || "-"}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
+
+                  <hr class="invoice-spacing" />
                 </div>
               </div>
-            </section>
-          </div>
+            </div>
+          </section>
         </div>
       </div>
     </>

@@ -1,5 +1,6 @@
 const Blog = require("../models/Blog");
-
+const Place = require("../models/Place");
+const Category = require("../models/Category");
 // Create a new blog
 const create = async (req, res) => {
   try {
@@ -33,6 +34,52 @@ const getAll = async (req, res) => {
     const blog = await Blog.find().populate(["category", "place"]);
     // Sort by date descending
     res.status(200).json({ status: 201, data: blog, message: "success" });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ status: 500, data: [], message: "Internal Server Error" });
+  }
+};
+
+// Get all blogs with filters
+const getAllByFilters = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const query = {};
+
+    // Extract filters from query parameters
+    const { destinationFilter, categoryFilter, parameter } = req.body;
+
+    if (destinationFilter) {
+      const destination = await Place.findOne({ country: destinationFilter });
+      query.place = destination._id;
+    }
+
+    if (categoryFilter) {
+      const category = await Category.findOne({ title: categoryFilter });
+      query.category = category._id;
+    }
+
+    if (parameter) {
+      query.title = { $regex: parameter, $options: "i" }; // Case-insensitive search
+    }
+    const blogs = await Blog.find(query)
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .populate(["category", "place"]);
+
+    const count = await Blog.countDocuments(query);
+
+    const result = {
+      blogs: blogs,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+    };
+
+    // Sort by date descending
+    res.status(200).json({ status: 201, data: result, message: "success" });
   } catch (error) {
     console.error(error);
     res
@@ -117,6 +164,7 @@ const deleteItemById = async (req, res) => {
 module.exports = {
   create,
   getAll,
+  getAllByFilters,
   getItemById,
   updateItemById,
   deleteItemById,
