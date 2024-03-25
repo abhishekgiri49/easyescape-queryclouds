@@ -7,7 +7,6 @@ import {
   SearchBar,
   OurHighlights,
   FeaturedDestination,
-  Sin2,
   Footer,
 } from "../components";
 
