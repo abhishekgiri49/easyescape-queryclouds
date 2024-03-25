@@ -86,12 +86,49 @@ const getReturnStatus = async (req, res) => {
 const refundPayment = async (req, res) => {
   try {
     const { tripId } = req.params.id;
+    const trip = await Trip.findById(req.params.id);
+    // console.log(trip.paymentIntent);
+    if (trip.paymentIntent == null) {
+      return res.status(400).send({
+        status: 400,
+        message: "Trip has not been paid yet",
+      });
+    }
+    const bookingDate = trip.bookingDate; // Assuming createdAt represents the booking date
+    const departureDate = trip.departureDate;
+    const amount = trip.totalAmount;
+    const currentDate = new Date();
+    const bookingTimeDifference = bookingDate.getTime() - currentDate.getTime();
+    const timeDifference = departureDate.getTime() - currentDate.getTime();
+    const daysBeforeDeparture = Math.ceil(timeDifference / (1000 * 3600 * 24));
 
-    res.status(201).json({
-      status: 201,
-      message: "success",
-      data: {},
-    });
+    let refundAmount = 0;
+
+    if (bookingTimeDifference <= 86400000) {
+      refundAmount = amount * 100; // Refund all amount if booking date is less than 24 hours from current date
+    } else if (daysBeforeDeparture <= 5) {
+      refundAmount = (amount * 100) / 2; // Refund 50% of the amount
+    } else {
+      refundAmount = 0; // No refund
+    }
+
+    if (refundAmount > 0) {
+      const refund = await stripe.refunds.create({
+        payment_intent: trip.paymentIntent,
+        amount: refundAmount,
+      });
+
+      res.status(201).json({
+        status: 201,
+        message: "success",
+        data: refund,
+      });
+    } else {
+      return res.status(400).send({
+        status: 400,
+        message: "No refund applicable",
+      });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -332,4 +369,5 @@ module.exports = {
   getById,
   updateById,
   deleteById,
+  refundPayment,
 };

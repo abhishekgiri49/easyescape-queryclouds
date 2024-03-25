@@ -172,7 +172,7 @@ export const router = createBrowserRouter([
         element: <UserTripList />,
       },
       {
-        path: "trips/:id",
+        path: "trips/:tripId",
         element: <UserTripDetail />,
       },
     ],

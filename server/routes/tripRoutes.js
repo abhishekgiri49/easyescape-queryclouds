@@ -11,6 +11,7 @@ const {
   getAllByUser,
   updateById,
   deleteById,
+  refundPayment,
 } = require("../controllers/tripController");
 // Create a new trip (requires token validation)
 router.post("/", verifyToken, validateTrip, validate, create);
@@ -28,6 +29,7 @@ router.put("/:id", verifyToken, isAdmin, validateTrip, validate, updateById);
 // Delete a  by ID (requires token validation)
 router.delete("/:id", verifyToken, deleteById);
 /*----------------------------------------------*/
-router.post("/create-checkout-session", createCheckoutSession);
-router.get("/response/return", getReturnStatus);
+router.post("/create-checkout-session", verifyToken, createCheckoutSession);
+router.get("/response/return", verifyToken, getReturnStatus);
+router.get("/refund/:id", verifyToken, refundPayment);
 module.exports = router;
