@@ -8,6 +8,7 @@ const {
   create,
   getAll,
   getById,
+  getAllByUser,
   updateById,
   deleteById,
 } = require("../controllers/tripController");
@@ -17,7 +18,8 @@ router.post("/", verifyToken, validateTrip, validate, create);
 // Get all trip (doesn't requires token validation)
 router.get("/", getAll);
 
-// Get a specific  by ID  (doesn't requires token validation)
+// Get a specific  by ID  (does requires token validation)
+router.get("/getByUser", verifyToken, getAllByUser);
 router.get("/:id", getById);
 
 // Update a  by ID (requires token validation)

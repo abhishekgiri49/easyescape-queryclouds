@@ -115,6 +115,7 @@ const List = () => {
   };
   const handleOpenModal = () => {
     setShow(true);
+    setFormData({ _id: null, title: "", description: "", status: "" });
     handleClose();
   };
 

@@ -25,8 +25,6 @@ const Landing = () => {
       <FlashDeal />
       <TrendingBlogs />
       <OurHighlights />
-
-      {/* <Sin2 /> */}
     </>
   );
 };

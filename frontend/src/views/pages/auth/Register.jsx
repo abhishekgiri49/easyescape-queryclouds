@@ -1,12 +1,11 @@
 import img from "../../../assets/images/register.svg";
 import { useState } from "react";
-import { Logo, FormRow } from "../../components";
-import { Link } from "react-router-dom";
+import { FormRow, Alert } from "../../components";
+import { Link, useNavigate } from "react-router-dom";
 import "../../../assets/css/pages/authentication.css";
 import { AuthService } from "../../../repositories";
 const Register = () => {
-  const [successMessage, setSuccessMessage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [email, setEmail] = useState();
   const [username, setUsername] = useState();
@@ -26,7 +25,8 @@ const Register = () => {
 
     AuthService.register(registerData)
       .then(() => {
-        setSuccessMessage("Registered successfully");
+        navigate("/login");
+        Alert("success", "Registered successfully");
         setErrors({});
         // Optionally, you can redirect or perform other actions after successful addition
       })
@@ -40,7 +40,8 @@ const Register = () => {
           });
           setErrors(newErrors);
         } else {
-          setErrorMessage("Error registering. Please try again.");
+          console.log(error);
+          Alert("danger", "Server Error");
         }
       });
     // api call
@@ -66,8 +67,6 @@ const Register = () => {
                   <p className="card-text mb-2">
                     Make your app management easy and fun!
                   </p>
-                  {errorMessage && <>{errorMessage}</>}
-                  {successMessage && <>{successMessage}</>}
 
                   <FormRow
                     type="text"

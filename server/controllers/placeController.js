@@ -3,9 +3,10 @@ const Place = require("../models/Place");
 // Create a new place
 const create = async (req, res) => {
   try {
-    const { name, status, categoryId } = req.body;
+    const { name, country, status, categoryId } = req.body;
     let updateFields = {
       name,
+      country,
       category: categoryId,
       status,
     };
@@ -58,9 +59,10 @@ const getItemById = async (req, res) => {
 // Update a Item by ID
 const updateItemById = async (req, res) => {
   try {
-    const { name, status, categoryId } = req.body;
+    const { name, country, status, categoryId } = req.body;
     let updateFields = {
       name,
+      country,
       category: categoryId,
       status,
     };

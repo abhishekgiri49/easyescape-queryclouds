@@ -9,6 +9,7 @@ const { validateBlog, validate } = require("../middlewares/validator");
 const {
   create,
   getAll,
+  getAllByFilters,
   getItemById,
   updateItemById,
   deleteItemById,
@@ -25,10 +26,11 @@ router.post(
   create
 );
 
-// Get all items (requires token validation)
+// Get all items
 router.get("/", getAll);
-
-// Get a specific item by ID  (requires token validation)
+// Get all items with filtering
+router.post("/filter", getAllByFilters);
+// Get a specific item by ID
 router.get("/:id", getItemById);
 
 // Update a item by ID (requires token validation)

@@ -118,12 +118,12 @@ const PackageDetail = () => {
               <section id="profile-info">
                 <div className="row">
                   <div className="col-lg-8 col-12 order-1 order-lg-2">
-                    <PackageInfoCard />
+                    <PackageInfoCard packageData={packageDetail} />
                   </div>
 
                   <div className="col-lg-4 col-12 order-3">
                     <div class="amount-payable checkout-options">
-                      {userAuthenticated && !processOrder && (
+                      {!processOrder && (
                         <PriceCard
                           packageInfo={packageDetail}
                           onChange={handleFilters}

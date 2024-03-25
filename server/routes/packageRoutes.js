@@ -12,6 +12,7 @@ const {
   getById,
   updateById,
   deleteById,
+  updatePackageIncludedById,
   getPackageWithFilters,
 } = require("../controllers/packageController");
 
@@ -42,7 +43,12 @@ router.put(
   validate,
   updateById
 );
-
+router.put(
+  "/update-included/:id",
+  verifyToken,
+  isAdmin,
+  updatePackageIncludedById
+);
 // Delete a  by ID (requires token validation)
 router.delete("/:id", verifyToken, deleteById);
 router.post("/search", getPackageWithFilters);

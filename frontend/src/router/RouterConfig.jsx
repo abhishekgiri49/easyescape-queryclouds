@@ -24,6 +24,13 @@ import {
   HomePackageDetail,
   Success,
   TripList,
+  Category,
+  IdeaBlogList,
+  IdeaBlogDetail,
+  UserDashboard,
+  UserTripList,
+  UserTripDetail,
+  UserChangePassword,
 } from "../views";
 
 const AuthorizedRoute = ({ element, roles }) => {
@@ -83,6 +90,18 @@ export const router = createBrowserRouter([
         path: "return",
         element: <Success />,
       },
+      {
+        path: "idea/category",
+        element: <Category />,
+      },
+      {
+        path: "idea/search",
+        element: <IdeaBlogList />,
+      },
+      {
+        path: "blog/detail/:blogId",
+        element: <IdeaBlogDetail />,
+      },
     ],
   },
   {
@@ -119,10 +138,7 @@ export const router = createBrowserRouter([
         path: "packages",
         element: <PackageList />,
       },
-      {
-        path: "packages/add",
-        element: <PackageAdd />,
-      },
+
       {
         path: "packages/detail/:packageId",
         element: <PackageDetail />,
@@ -141,7 +157,23 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <UserDashboard />,
+      },
+      {
+        path: "account",
         element: <ProfileDetail />,
+      },
+      {
+        path: "change-password",
+        element: <UserChangePassword />,
+      },
+      {
+        path: "trips",
+        element: <UserTripList />,
+      },
+      {
+        path: "trips/:id",
+        element: <UserTripDetail />,
       },
     ],
   },

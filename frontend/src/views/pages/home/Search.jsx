@@ -34,7 +34,7 @@ const Search = () => {
       <SearchBar onChangeSearch={handleFilters} />
       <div className="content-wrapper container-xxl p-0">
         <div className="content-detached content-right">
-          <h1 className="title center">Travel pppPackages</h1>
+          <h1 className="title center">Travel Packages</h1>
           <div className="content-body">
             <section id="ecommerce-header">
               <div className="row">
@@ -66,7 +66,7 @@ const Search = () => {
                 <PackageCard key={index} packageData={packageData} />
               ))}
             </section>
-            <Pagination />
+            {/* <Pagination /> */}
           </div>
         </div>
         <FilterSidebar onChange={handleFilters} />

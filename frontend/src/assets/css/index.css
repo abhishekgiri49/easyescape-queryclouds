@@ -35,11 +35,11 @@
   align-items: center;
 }
 
-.price>.discount-info {
+.price > .discount-info {
   color: #4fc3f7;
 }
 
-.price>.original-price {
+.price > .original-price {
   font-size: 2em;
 }
 
@@ -193,6 +193,12 @@ span.selected {
   background-position: center;
 }
 
+.fa-icon-styling {
+  height: "5rem";
+  width: "5rem";
+  padding-left: "5rem";
+}
+
 .plane {
   margin-top: 150px;
   margin-left: 28px;
@@ -202,7 +208,7 @@ span.selected {
 }
 
 .right {
-  height: 400px;
+  height: 330px;
   width: 40%;
   float: right;
   margin-right: 50px;
@@ -219,7 +225,7 @@ span.selected {
 
 /*Left*/
 
-.right>h1,
+.right > h1,
 h4 {
   color: #fff;
 }
@@ -228,7 +234,8 @@ h4 {
 .card-img-top,
 .card-img-bottom {
   width: 100%;
-  height: 500px;
+  max-height: 40%;
+  min-height: 50%;
 }
 
 /* FORM */
@@ -240,9 +247,11 @@ fieldset {
   padding: 2em;
   border: none;
 }
+
 .right fieldset label {
   color: white;
 }
+
 .reservation {
   text-transform: uppercase;
   font-family: "Hind", sans-serif;
@@ -296,8 +305,13 @@ fieldset {
   float: right;
   width: 46%;
 }
+h2.center {
+  font-family: "Lobster", cursive;
 
-.btn {
+  padding: 0 0 0 30%;
+  color: #3f51b5;
+}
+.searchbtn {
   background-color: #ffbd26;
   font-family: "Hind", sans-serif;
   font-weight: bold;
@@ -310,7 +324,7 @@ fieldset {
   cursor: pointer;
 }
 
-.btn:hover {
+.searchbtn:hover {
   background-color: #fac778;
 }
 
@@ -422,7 +436,7 @@ fieldset {
   transition: left 0s 0.75s;
 }
 
-[id^="slide"]:checked+.slide {
+[id^="slide"]:checked + .slide {
   left: 0;
   z-index: 100;
   transition: left 0.65s ease-out;
@@ -550,9 +564,11 @@ th {
   text-align: left;
   line-height: 1.6;
 }
+
 .user-status {
   color: #6e6b7b !important;
 }
+
 .bottone3 {
   background-color: transparent;
   font-family: "Hind", sans-serif;
@@ -630,7 +646,7 @@ ul.mainmenu2 li a {
   overflow: hidden;
 }
 
-#collegamenti>li a {
+#collegamenti > li a {
   color: #e5e5e5;
   font-size: 13px;
   text-align: center;
@@ -640,7 +656,7 @@ ul.mainmenu2 li a {
   font-family: "Hind", sans-serif;
 }
 
-#collegamenti>li a:hover {
+#collegamenti > li a:hover {
   color: #f8a426;
 }
 
@@ -705,12 +721,12 @@ ul.mainmenu2 li a {
     margin-top: 120px;
   }
 
-  .right>h1,
+  .right > h1,
   h4 {
     color: #fff;
   }
 
-  .right>.book {
+  .right > .book {
     font-size: 50px;
     font-weight: bold;
     margin-top: -10px;
@@ -718,14 +734,14 @@ ul.mainmenu2 li a {
     font-family: "Secular One", sans-serif;
   }
 
-  .right>.travel {
+  .right > .travel {
     margin-top: 50px;
     font-size: 50px;
     font-weight: bold;
     font-family: "Secular One", sans-serif;
   }
 
-  .right>h4 {
+  .right > h4 {
     font-family: "Raleway", sans-serif;
     font-size: 14px;
     margin-top: -40px;
@@ -1003,12 +1019,12 @@ ul.mainmenu2 li a {
     margin-top: 120px;
   }
 
-  .right>h1,
+  .right > h1,
   h4 {
     color: #fff;
   }
 
-  .right>.book {
+  .right > .book {
     font-size: 50px;
     font-weight: bold;
     margin-top: -10px;
@@ -1016,14 +1032,14 @@ ul.mainmenu2 li a {
     font-family: "Secular One", sans-serif;
   }
 
-  .right>.travel {
+  .right > .travel {
     margin-top: 50px;
     font-size: 50px;
     font-weight: bold;
     font-family: "Secular One", sans-serif;
   }
 
-  .right>h4 {
+  .right > h4 {
     font-family: "Raleway", sans-serif;
     font-size: 14px;
     margin-top: -40px;
@@ -1303,6 +1319,7 @@ ul.mainmenu2 li a {
   margin-bottom: 3rem;
   width: 100%;
 }
+
 .section-head-title {
   color: #fae037;
   font-size: 3.2rem;
@@ -1425,6 +1442,7 @@ section.features {
     padding: 5px 0;
   }
 }
+
 .loading-screen {
   position: fixed;
   top: 0;
@@ -1451,6 +1469,7 @@ section.features {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -1500,3 +1519,78 @@ section.features {
 .input-box[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* category trip idea */
+.trip-container .trip_header {
+  padding-top: 5%;
+}
+.trip-page {
+  padding: 0 200px;
+}
+.trip-container .trip_header__title {
+  position: relative;
+  height: 50px;
+  vertical-align: baseline;
+  color: #369593;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  margin-left: 1%;
+}
+.trip-container .trip__title {
+  position: relative;
+  height: 30px;
+  vertical-align: baseline;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: rgb(0, 153, 153);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgb(0, 153, 153);
+}
+.trip-container .box:hover {
+  box-shadow: 15px 15px 13px rgba(85, 85, 85, 0.3);
+  transition: 0.4s;
+  transform: translate(-1%, -1%);
+}
+.trip-container .box {
+  position: relative;
+  height: 300px;
+  box-shadow: 3px 3px 10px rgba(85, 85, 85, 0.5);
+  border-radius: 8px;
+  margin-bottom: 7%;
+  transition: 1s;
+}
+.trip-container .box a:hover .box__title {
+  height: 35%;
+  transition: 1s;
+}
+.trip-container .box a:hover .box__title p {
+  opacity: 1;
+}
+.trip-container .box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.trip-container .box .box__title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25%;
+  background-color: #f6f6f6;
+  border-radius: 0 0 8px 8px;
+  vertical-align: middle;
+  transition: 0.5s;
+  transition-timing-function: ease-out;
+}
+
+.trip-container .box .box__title h6 {
+  text-align: center;
+  color: #6e6b7b;
+  text-transform: uppercase;
+  margin: 7% 0 0 0;
+  font-size: 0.9em;
+}
+
+/* ------------------- Trip Details -------------------*/

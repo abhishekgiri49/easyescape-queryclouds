@@ -9,3 +9,4 @@ export { default as PlaceService } from "./PlaceService";
 export { default as PackageService } from "./PackageService";
 
 export { default as TripService } from "./TripService";
+export { default as ItineraryService } from "./ItineraryService";

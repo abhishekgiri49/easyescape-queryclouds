@@ -1,15 +1,15 @@
-import Repository from './Repository';
-import FileUploadRepository from './FileUploadRepository';
-const resource = '/secured/blogs';
+import Repository from "./Repository";
+import FileUploadRepository from "./FileUploadRepository";
+const resource = "/secured/blogs";
 
 const BlogService = {
   get() {
     return new Promise((resolve, reject) => {
       Repository.get(`${resource}/`)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -17,10 +17,10 @@ const BlogService = {
   getbyUser(id) {
     return new Promise((resolve, reject) => {
       Repository.get(`${resource}/user/${id}/posts`)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -28,10 +28,10 @@ const BlogService = {
   find(id) {
     return new Promise((resolve, reject) => {
       Repository.get(`${resource}/${id}`)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -39,21 +39,24 @@ const BlogService = {
   findforPublic(id) {
     return new Promise((resolve, reject) => {
       Repository.get(`${resource}/${id}`)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
   },
-  getBlogbyCategory(id) {
+  getBlogsByFilter(currentPage, limit, payload) {
     return new Promise((resolve, reject) => {
-      Repository.get(`${resource}/category/${id}`)
-        .then(response => {
+      Repository.post(
+        `${resource}/filter?page=${currentPage}&limit=${limit}`,
+        payload
+      )
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -61,10 +64,10 @@ const BlogService = {
   create(payload) {
     return new Promise((resolve, reject) => {
       FileUploadRepository.post(`${resource}`, payload)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -73,10 +76,10 @@ const BlogService = {
   update(id, payload) {
     return new Promise((resolve, reject) => {
       Repository.put(`${resource}/${id}`, payload)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
@@ -85,16 +88,14 @@ const BlogService = {
   delete(id) {
     return new Promise((resolve, reject) => {
       Repository.delete(`${resource}/${id}`)
-        .then(response => {
+        .then((response) => {
           resolve(response.data.data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error.response);
         });
     });
   },
-
-  
 };
 
 export default BlogService;
