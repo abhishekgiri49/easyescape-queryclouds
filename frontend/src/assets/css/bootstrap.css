@@ -91,7 +91,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-family: inherit;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.2;
   color: #5e5873; }
 
@@ -195,11 +195,11 @@ sup {
   top: -.5em; }
 
 a {
-  color: #7367f0;
+  color: #18c1b3;
   text-decoration: none; }
 
 a:hover {
-  color: #6d62e4;
+  color: #18785d;
   text-decoration: none; }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -1921,7 +1921,7 @@ textarea.form-control-lg {
   box-shadow: 0 2px 4px 0 rgba(115, 103, 240, 0.4); }
 
 .form-check-input:checked {
-  background-color: #7367f0;
+  background-color: #11907f;
   border-color: #7367f0; }
 
 .form-check-input:checked[type="checkbox"] {
@@ -2380,36 +2380,36 @@ fieldset:disabled .btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #7367f0;
-  border-color: #7367f0; }
+  background-color: #097d6f;
+  border-color: #67f0e0; }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #6258cc;
-  border-color: #5c52c0; }
+  background-color: #58ccb5;
+  border-color: #52c0b1; }
 
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #fff;
-  background-color: #6258cc;
-  border-color: #5c52c0;
+  background-color: #119d84;
+  border-color: #52c0bb;
   box-shadow: 0 0 0 0.25rem rgba(136, 126, 242, 0.5); }
 
 .btn-check:checked + .btn-primary,
 .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #5c52c0;
-  border-color: #564db4; }
+  background-color: #25867f;
+  border-color: #23a291; }
 
 .btn-check:checked + .btn-primary:focus,
 .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.25rem rgba(136, 126, 242, 0.5); }
+  box-shadow: 0 0 0 0.25rem rgba(43, 202, 181, 0.5); }
 
 .btn-primary:disabled, .btn-primary.disabled {
   color: #fff;
-  background-color: #7367f0;
-  border-color: #7367f0; }
+  background-color: #67f0d9;
+  border-color: #30ac9c; }
 
 .btn-secondary {
   color: #fff;

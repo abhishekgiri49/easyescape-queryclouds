@@ -49,12 +49,12 @@ const FilterNavbar = ({ onChange }) => {
   };
   return (
     <>
-      <div className="sidebar-detached sidebar-left">
+      <div className="sidebar-detached sidebar-left py-6">
         <div className="sidebar">
           <div className="sidebar-shop">
             <div className="row">
-              <div className="col-sm-12">
-                <h6 className="filter-heading d-none d-lg-block">Filters</h6>
+              <div className="col-sm-12 py-0.5">
+                <h3 className="filter-heading d-none d-lg-block">Filters</h3>
               </div>
             </div>
             <div className="card">
@@ -93,7 +93,7 @@ const FilterNavbar = ({ onChange }) => {
                 </div>
 
                 <div id="product-categories">
-                  <h6 className="filter-title">Places</h6>
+                  <h6 className="font-weight-bold">Places</h6>
                   <ul className="list-unstyled categories-list">
                     {places &&
                       places.map((place, index) => (

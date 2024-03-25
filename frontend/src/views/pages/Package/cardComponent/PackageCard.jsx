@@ -34,7 +34,7 @@ const PackageCard = ({ index, packageData }) => {
   return (
     <>
       <Link to={`/package/detail/${packageData._id}`}>
-        -{" "}
+        {" "}
         <div className="card">
           <img
             className="card-img-top"
