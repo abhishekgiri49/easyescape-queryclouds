@@ -1,4 +1,18 @@
+import { TripService } from "../../../repositories";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useEffect, useState, useMemo } from "react";
+import { UserCancel } from "../../../views";
 const Details = () => {
+  const [trip, setTrip] = useState({});
+  const { tripId } = useParams();
+  useEffect(() => {
+    fetchTrip();
+  }, []);
+  const fetchTrip = () => {
+    TripService.find(tripId).then((data) => {
+      setTrip(data);
+    });
+  };
   return (
     <div className="tab-pane fade   show active" id="dashboad" role="tabpanel">
       <div className="myaccount-content">
@@ -38,7 +52,7 @@ const Details = () => {
             <ul className="rentalgrid">
               <li>
                 <h5>booking id</h5>
-                <p>#1234</p>
+                <p>#{trip._id}</p>
               </li>
 
               <li>
@@ -59,9 +73,7 @@ const Details = () => {
                 <p>stroller</p>
               </li>
               <li>
-                <h5>Add-ons</h5>
-                <p>raincover</p>
-                <p>ridingboard</p>
+                <UserCancel />
               </li>
             </ul>
           </section>

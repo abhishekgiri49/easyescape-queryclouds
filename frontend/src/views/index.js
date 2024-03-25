@@ -31,6 +31,7 @@ export { default as UserDashboard } from "./userDashboard/Dashboard";
 export { default as UserTripList } from "./userDashboard/Trips/List";
 export { default as UserTripDetail } from "./userDashboard/Trips/Detail";
 export { default as UserChangePassword } from "./userDashboard/Profile/ChangePassword";
+export { default as UserCancel } from "./userDashboard/Trips/Cancel";
 
 export { default as Search } from "./pages/home/Search";
 export { default as Register } from "./pages/auth/Register";

@@ -32,7 +32,7 @@ const Success = () => {
                 <p>
                   We are delighted to inform you that we received your payments
                 </p>
-                <Link to={"/"} class="btn-view-orders">
+                <Link to={"/dashboard/trips"} class="btn-view-orders">
                   View Your Trips
                 </Link>
                 <Link to={"/"}>Continue Shopping</Link>
